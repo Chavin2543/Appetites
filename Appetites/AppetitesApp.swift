@@ -9,12 +9,13 @@ import SwiftUI
 
 @main
 struct AppetitesApp: App {
-    let persistenceController = PersistenceController.shared
+    
+    @StateObject private var userService:UserDataService = UserDataService()
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TabBarView()
+                .environmentObject(userService)
         }
     }
 }
