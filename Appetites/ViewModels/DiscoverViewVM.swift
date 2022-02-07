@@ -14,7 +14,6 @@ class DiscoverViewVM: ObservableObject {
     
     
     init() {
-        print("Hello")
     }
     
     func search() {
