@@ -90,6 +90,6 @@ struct ProfileView: View {
 struct ProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ProfileView(vm: ProfileViewVM.init())
+        ProfileView(vm: ProfileViewVM.init()).environmentObject(UserDataService())
     }
 }

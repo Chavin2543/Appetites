@@ -67,6 +67,17 @@
 		3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */; };
 		3AA23EB827AD5F3600CA4FBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB727AD5F3600CA4FBA /* Post.swift */; };
 		3AA23EBC27ADA1F300CA4FBA /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EBB27ADA1F300CA4FBA /* UserInfo.swift */; };
+		8C9FFCCA27B22D7200B4AFBA /* DiscoverTinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCC927B22D7200B4AFBA /* DiscoverTinderView.swift */; };
+		8C9FFCCC27B22FB500B4AFBA /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCCB27B22FB500B4AFBA /* CardView.swift */; };
+		8C9FFCD027B2392E00B4AFBA /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCCF27B2392E00B4AFBA /* CardTransition.swift */; };
+		8C9FFCD227B2396E00B4AFBA /* HoneymoonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCD127B2396E00B4AFBA /* HoneymoonModel.swift */; };
+		8C9FFCD427B2397E00B4AFBA /* HoneymoonModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCD327B2397E00B4AFBA /* HoneymoonModelList.swift */; };
+		8C9FFCD727B23F6800B4AFBA /* SymbolModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCD627B23F6800B4AFBA /* SymbolModifier.swift */; };
+		8C9FFCD927B24A3300B4AFBA /* PostComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCD827B24A3300B4AFBA /* PostComponentView.swift */; };
+		8C9FFCDB27B24A5E00B4AFBA /* PostComponentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCDA27B24A5E00B4AFBA /* PostComponentData.swift */; };
+		8C9FFCDD27B24A6F00B4AFBA /* PostComponentDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */; };
+		8C9FFCDF27B24FE100B4AFBA /* HeartButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCDE27B24FE100B4AFBA /* HeartButtonComponent.swift */; };
+		8C9FFCE127B25B1900B4AFBA /* ClickPostComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCE027B25B1900B4AFBA /* ClickPostComponentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +140,17 @@
 		3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHTTPManager.swift; sourceTree = "<group>"; };
 		3AA23EB727AD5F3600CA4FBA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3AA23EBB27ADA1F300CA4FBA /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
+		8C9FFCC927B22D7200B4AFBA /* DiscoverTinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderView.swift; sourceTree = "<group>"; };
+		8C9FFCCB27B22FB500B4AFBA /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8C9FFCCF27B2392E00B4AFBA /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
+		8C9FFCD127B2396E00B4AFBA /* HoneymoonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneymoonModel.swift; sourceTree = "<group>"; };
+		8C9FFCD327B2397E00B4AFBA /* HoneymoonModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoneymoonModelList.swift; sourceTree = "<group>"; };
+		8C9FFCD627B23F6800B4AFBA /* SymbolModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolModifier.swift; sourceTree = "<group>"; };
+		8C9FFCD827B24A3300B4AFBA /* PostComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponentView.swift; sourceTree = "<group>"; };
+		8C9FFCDA27B24A5E00B4AFBA /* PostComponentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponentData.swift; sourceTree = "<group>"; };
+		8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponentDataList.swift; sourceTree = "<group>"; };
+		8C9FFCDE27B24FE100B4AFBA /* HeartButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButtonComponent.swift; sourceTree = "<group>"; };
+		8C9FFCE027B25B1900B4AFBA /* ClickPostComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPostComponentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +171,8 @@
 			children = (
 				3A20C30127A5E34B00082703 /* Food.json */,
 				3A20C30627A5E3A100082703 /* LottieFood.swift */,
+				8C9FFCCF27B2392E00B4AFBA /* CardTransition.swift */,
+				8C9FFCDE27B24FE100B4AFBA /* HeartButtonComponent.swift */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -240,6 +264,7 @@
 			children = (
 				3A6EE2BC27AA747A00BC6122 /* Utilities */,
 				3A6EE2B927AA57FA00BC6122 /* Services */,
+				8C9FFCD527B23F4C00B4AFBA /* Modifier */,
 				3A735F6227A5CBDD003A88D7 /* Models */,
 				3A735F3627A5A3D6003A88D7 /* AppetitesApp.swift */,
 				3A735F4A27A5AA35003A88D7 /* ViewModels */,
@@ -276,6 +301,7 @@
 				3A20C30A27A5E82200082703 /* ProfileView.swift */,
 				3A735F6827A5D735003A88D7 /* TabBarView.swift */,
 				3A735F5A27A5B7E6003A88D7 /* DiscoverView.swift */,
+				8C9FFCC927B22D7200B4AFBA /* DiscoverTinderView.swift */,
 				3A735F5627A5B65A003A88D7 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -301,6 +327,8 @@
 				3A20C30027A5E34400082703 /* Animation */,
 				3A735F5227A5AE92003A88D7 /* Items */,
 				3A735F4D27A5AA84003A88D7 /* Misc */,
+				8C9FFCD827B24A3300B4AFBA /* PostComponentView.swift */,
+				8C9FFCE027B25B1900B4AFBA /* ClickPostComponentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -331,6 +359,7 @@
 				3A20C30E27A5F3DE00082703 /* CalendarBadge.swift */,
 				3A735F6027A5CADB003A88D7 /* CategoryBadgeList.swift */,
 				3A735F6327A5CD73003A88D7 /* CategoryTab.swift */,
+				8C9FFCCB27B22FB500B4AFBA /* CardView.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -349,8 +378,20 @@
 			children = (
 				3A735F6627A5CDD4003A88D7 /* CategoryTabModel.swift */,
 				3A735F6A27A5D741003A88D7 /* TabModel.swift */,
+				8C9FFCDA27B24A5E00B4AFBA /* PostComponentData.swift */,
+				8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */,
+				8C9FFCD127B2396E00B4AFBA /* HoneymoonModel.swift */,
+				8C9FFCD327B2397E00B4AFBA /* HoneymoonModelList.swift */,
 			);
 			path = Localized;
+			sourceTree = "<group>";
+		};
+		8C9FFCD527B23F4C00B4AFBA /* Modifier */ = {
+			isa = PBXGroup;
+			children = (
+				8C9FFCD627B23F6800B4AFBA /* SymbolModifier.swift */,
+			);
+			path = Modifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -445,29 +486,36 @@
 				3A6EE2BB27AA73C000BC6122 /* UserDataService.swift in Sources */,
 				3A735F6727A5CDD4003A88D7 /* CategoryTabModel.swift in Sources */,
 				3A735F4027A5A3D7003A88D7 /* Persistence.swift in Sources */,
+				8C9FFCD727B23F6800B4AFBA /* SymbolModifier.swift in Sources */,
 				3A20C30D27A5E8C600082703 /* ProfileBlob.swift in Sources */,
 				3A6EE25C27A716B700BC6122 /* LoginBlob.swift in Sources */,
+				8C9FFCCC27B22FB500B4AFBA /* CardView.swift in Sources */,
 				3A2F219627B029C700E7BB42 /* FollowingDetails.swift in Sources */,
 				3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */,
+				8C9FFCE127B25B1900B4AFBA /* ClickPostComponentView.swift in Sources */,
 				3A735F5527A5AEA9003A88D7 /* LongButton.swift in Sources */,
 				3A2F21A327B04EC800E7BB42 /* OtherProfileView.swift in Sources */,
 				3A2F219A27B0396000E7BB42 /* UserSearchResult.swift in Sources */,
 				3A6EE2BE27AA748900BC6122 /* PostHTTPManager.swift in Sources */,
 				3A20C31327A5F69400082703 /* UserStatusBadge.swift in Sources */,
 				3A2F21A127B03AC300E7BB42 /* SearchResultDetails.swift in Sources */,
+				8C9FFCDF27B24FE100B4AFBA /* HeartButtonComponent.swift in Sources */,
 				3A735F4327A5A3D7003A88D7 /* Appetites.xcdatamodeld in Sources */,
 				3A2F219027B0283500E7BB42 /* Following.swift in Sources */,
 				3A735F6427A5CD73003A88D7 /* CategoryTab.swift in Sources */,
 				3A6EE26227A726BA00BC6122 /* CalendarView.swift in Sources */,
 				3AA23EBC27ADA1F300CA4FBA /* UserInfo.swift in Sources */,
 				3A735F5127A5ABDE003A88D7 /* OnboardingBlob.swift in Sources */,
+				8C9FFCCA27B22D7200B4AFBA /* DiscoverTinderView.swift in Sources */,
 				3A20C30727A5E3A100082703 /* LottieFood.swift in Sources */,
 				3A6EE26027A7252700BC6122 /* BackButton.swift in Sources */,
+				8C9FFCD227B2396E00B4AFBA /* HoneymoonModel.swift in Sources */,
 				3A6EE25827A6C50E00BC6122 /* SearchBar.swift in Sources */,
 				3A735F6B27A5D741003A88D7 /* TabModel.swift in Sources */,
 				3A735F3927A5A3D6003A88D7 /* ContentView.swift in Sources */,
 				3A735F5F27A5C8EE003A88D7 /* CategoryBadge.swift in Sources */,
 				3A735F6D27A5DDF4003A88D7 /* DiscoverViewVM.swift in Sources */,
+				8C9FFCD027B2392E00B4AFBA /* CardTransition.swift in Sources */,
 				3A6EE25E27A7170800BC6122 /* AuthView.swift in Sources */,
 				3A2F219427B028B100E7BB42 /* FollowerDetails.swift in Sources */,
 				3A735F3727A5A3D6003A88D7 /* AppetitesApp.swift in Sources */,
@@ -475,17 +523,21 @@
 				3A2F219227B0287B00E7BB42 /* Follower.swift in Sources */,
 				3A735F6127A5CADB003A88D7 /* CategoryBadgeList.swift in Sources */,
 				3A6EE2D127ABD90300BC6122 /* AuthViewVM.swift in Sources */,
+				8C9FFCD427B2397E00B4AFBA /* HoneymoonModelList.swift in Sources */,
 				3A20C30B27A5E82200082703 /* ProfileView.swift in Sources */,
 				3A735F5B27A5B7E6003A88D7 /* DiscoverView.swift in Sources */,
 				3A20C31727A67ED400082703 /* ProfileBadge.swift in Sources */,
+				8C9FFCDD27B24A6F00B4AFBA /* PostComponentDataList.swift in Sources */,
 				3A6EE2D327AC2E9D00BC6122 /* TabViewVM.swift in Sources */,
 				3A20C31527A5F69D00082703 /* SettingView.swift in Sources */,
 				3A20C30F27A5F3DE00082703 /* CalendarBadge.swift in Sources */,
 				3A2F219F27B03A9A00E7BB42 /* SearchResult.swift in Sources */,
 				3A2F219C27B039CD00E7BB42 /* SearchViewVM.swift in Sources */,
 				3A20C30927A5E7EF00082703 /* NotificationView.swift in Sources */,
+				8C9FFCDB27B24A5E00B4AFBA /* PostComponentData.swift in Sources */,
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
+				8C9FFCD927B24A3300B4AFBA /* PostComponentView.swift in Sources */,
 				3A6EE26427A7277800BC6122 /* SearchButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

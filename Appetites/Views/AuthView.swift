@@ -84,6 +84,6 @@ struct AuthView_Previews: PreviewProvider {
     
     
     static var previews: some View {
-        AuthView(vm: AuthViewVM.init())
+        AuthView(vm: AuthViewVM.init()).environmentObject(UserDataService())
     }
 }

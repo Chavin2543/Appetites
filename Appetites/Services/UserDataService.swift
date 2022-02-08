@@ -208,7 +208,7 @@ class UserDataService : ObservableObject {
         user.email = userInfo.email
         user.expiresIn = userInfo.expiresIn
         user.registerDate = userInfo.registerDate
-        print(user.registerDate)
+        //print(user.registerDate)
     }
     
     func saveData() {
