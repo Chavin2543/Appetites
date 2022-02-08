@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "B3BA7126-F898-421C-8FAE-5D762061F13A"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCAE6B75-E6B2-4966-810E-78C1D1A1B61C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Appetites/Views/SearchView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "SearchView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "DCAE6B75-E6B2-4966-810E-78C1D1A1B61C - 25a97d48987bbfdb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of Appetites.SearchView.isAnimating : Swift.Bool"
+                  moduleName = "Appetites"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chavinpanicharoen/Documents/GitHub/Appetites/Appetites/Views/SearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "DCAE6B75-E6B2-4966-810E-78C1D1A1B61C - 8083265323bb5082"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Appetites.SearchView.init(token: Swift.String) -&gt; Appetites.SearchView"
+                  moduleName = "Appetites"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chavinpanicharoen/Documents/GitHub/Appetites/Appetites/Views/SearchView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

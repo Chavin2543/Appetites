@@ -62,6 +62,11 @@
 		3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A735F6827A5D735003A88D7 /* TabBarView.swift */; };
 		3A735F6B27A5D741003A88D7 /* TabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A735F6A27A5D741003A88D7 /* TabModel.swift */; };
 		3A735F6D27A5DDF4003A88D7 /* DiscoverViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A735F6C27A5DDF4003A88D7 /* DiscoverViewVM.swift */; };
+		3A87BECA27B19C250087F15E /* OtherProfileTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BEC927B19C250087F15E /* OtherProfileTab.swift */; };
+		3A87BECC27B19C7C0087F15E /* OtherProfileTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BECB27B19C7C0087F15E /* OtherProfileTabModel.swift */; };
+		3A87BECE27B1A1670087F15E /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BECD27B1A1670087F15E /* ProfilePost.swift */; };
+		3A87BED027B21CAA0087F15E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BECF27B21CAA0087F15E /* CustomDatePicker.swift */; };
+		3A87BED227B21F070087F15E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BED127B21F070087F15E /* DateValue.swift */; };
 		3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */; };
 		3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */; };
 		3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */; };
@@ -124,6 +129,11 @@
 		3A735F6827A5D735003A88D7 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		3A735F6A27A5D741003A88D7 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		3A735F6C27A5DDF4003A88D7 /* DiscoverViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewVM.swift; sourceTree = "<group>"; };
+		3A87BEC927B19C250087F15E /* OtherProfileTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileTab.swift; sourceTree = "<group>"; };
+		3A87BECB27B19C7C0087F15E /* OtherProfileTabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileTabModel.swift; sourceTree = "<group>"; };
+		3A87BECD27B1A1670087F15E /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
+		3A87BECF27B21CAA0087F15E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
+		3A87BED127B21F070087F15E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
 		3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewVM.swift; sourceTree = "<group>"; };
 		3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHTTPManager.swift; sourceTree = "<group>"; };
@@ -323,10 +333,13 @@
 				3A6EE26327A7277800BC6122 /* SearchButton.swift */,
 				3A735F5E27A5C8EE003A88D7 /* CategoryBadge.swift */,
 				3A735F5C27A5B8FF003A88D7 /* DiscoverBadge.swift */,
+				3A87BECD27B1A1670087F15E /* ProfilePost.swift */,
 				3A20C31627A67ED400082703 /* ProfileBadge.swift */,
 				3A20C31227A5F69400082703 /* UserStatusBadge.swift */,
 				3AA23EB727AD5F3600CA4FBA /* Post.swift */,
+				3A87BECF27B21CAA0087F15E /* CustomDatePicker.swift */,
 				3A6EE25727A6C50E00BC6122 /* SearchBar.swift */,
+				3A87BEC927B19C250087F15E /* OtherProfileTab.swift */,
 				3A2F219927B0396000E7BB42 /* UserSearchResult.swift */,
 				3A20C30E27A5F3DE00082703 /* CalendarBadge.swift */,
 				3A735F6027A5CADB003A88D7 /* CategoryBadgeList.swift */,
@@ -348,7 +361,9 @@
 			isa = PBXGroup;
 			children = (
 				3A735F6627A5CDD4003A88D7 /* CategoryTabModel.swift */,
+				3A87BED127B21F070087F15E /* DateValue.swift */,
 				3A735F6A27A5D741003A88D7 /* TabModel.swift */,
+				3A87BECB27B19C7C0087F15E /* OtherProfileTabModel.swift */,
 			);
 			path = Localized;
 			sourceTree = "<group>";
@@ -436,6 +451,7 @@
 				3A735F5D27A5B8FF003A88D7 /* DiscoverBadge.swift in Sources */,
 				3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */,
 				3A20C31127A5F59700082703 /* ProfileViewVM.swift in Sources */,
+				3A87BED227B21F070087F15E /* DateValue.swift in Sources */,
 				3A6EE2C527AA78B200BC6122 /* Credentials.swift in Sources */,
 				3A6EE2CF27ABD3C800BC6122 /* InfoFillView.swift in Sources */,
 				3A735F5927A5B7D0003A88D7 /* HomeView.swift in Sources */,
@@ -471,6 +487,7 @@
 				3A6EE25E27A7170800BC6122 /* AuthView.swift in Sources */,
 				3A2F219427B028B100E7BB42 /* FollowerDetails.swift in Sources */,
 				3A735F3727A5A3D6003A88D7 /* AppetitesApp.swift in Sources */,
+				3A87BECA27B19C250087F15E /* OtherProfileTab.swift in Sources */,
 				3A6EE25A27A6C5A400BC6122 /* SearchView.swift in Sources */,
 				3A2F219227B0287B00E7BB42 /* Follower.swift in Sources */,
 				3A735F6127A5CADB003A88D7 /* CategoryBadgeList.swift in Sources */,
@@ -480,6 +497,8 @@
 				3A20C31727A67ED400082703 /* ProfileBadge.swift in Sources */,
 				3A6EE2D327AC2E9D00BC6122 /* TabViewVM.swift in Sources */,
 				3A20C31527A5F69D00082703 /* SettingView.swift in Sources */,
+				3A87BED027B21CAA0087F15E /* CustomDatePicker.swift in Sources */,
+				3A87BECC27B19C7C0087F15E /* OtherProfileTabModel.swift in Sources */,
 				3A20C30F27A5F3DE00082703 /* CalendarBadge.swift in Sources */,
 				3A2F219F27B03A9A00E7BB42 /* SearchResult.swift in Sources */,
 				3A2F219C27B039CD00E7BB42 /* SearchViewVM.swift in Sources */,
@@ -487,6 +506,7 @@
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
 				3A6EE26427A7277800BC6122 /* SearchButton.swift in Sources */,
+				3A87BECE27B1A1670087F15E /* ProfilePost.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

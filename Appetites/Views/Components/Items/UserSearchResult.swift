@@ -15,10 +15,11 @@ struct UserSearchResult: View {
     var body: some View {
         GeometryReader { geometry in
             if userInfo.username != "" {
-                HStack (spacing:16) {
+                HStack (spacing:24) {
                     WebImage(url: URL(string: userInfo.profilePictureLink ?? "https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
                         .resizable()
-                        .frame(width: 80, height: 80, alignment: .center)
+                        .scaledToFill()
+                        .frame(width: 60, height: 60, alignment: .center)
                         .cornerRadius(80)
                     VStack (alignment:.leading,spacing:8){
                         Text("\(userInfo.username)")
@@ -28,6 +29,9 @@ struct UserSearchResult: View {
                             .font(.footnote)
                             .foregroundColor(.white)
                     }
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(.white)
                 }
             } else {
                 Text("Search Users")
@@ -43,5 +47,6 @@ struct UserSearchResult_Previews: PreviewProvider {
     static var previews: some View {
         UserSearchResult(userInfo:SearchResultDetails(username: "Loong", email: "loong@email.com", profilePictureLink: "https://images.pexels.com/photos/2007647/pexels-photo-2007647.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2")
                          )
+            .background(.black)
     }
 }

@@ -72,6 +72,7 @@ struct TabView_Previews: PreviewProvider {
     
     static var previews: some View {
         TabBarView()
+            .environmentObject(UserDataService())
     }
 }
 
