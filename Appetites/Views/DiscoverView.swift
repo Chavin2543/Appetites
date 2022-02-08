@@ -67,7 +67,7 @@ struct DiscoverView: View {
         .onDisappear {
             isAnimating.toggle()
         }
-        .sheet(isPresented: $vm.isSearcing) {
+        .fullScreenCover(isPresented: $vm.isSearcing) {
             SearchView(token:userService.token)
         }
     }

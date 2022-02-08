@@ -20,18 +20,25 @@ struct SearchView: View {
             NavigationView {
                 ZStack {
                     VStack {
-                        TextField("Search", text: $vm.searchText)
-                            .frame(width:geometry.size.width-36)
-                            .onChange(of: vm.searchText) { newValue in
-                                if(vm.searchText != "") {
-                                    vm.search(token: token)
-                                }
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .padding(.leading,8)
+                            TextField("Search", text: $vm.searchText)
+                                .frame(height:40)
+                                .onChange(of: vm.searchText) { newValue in
+                                    if(vm.searchText != "") {
+                                        vm.search(token: token)
+                                    }
                             }
+                        }
+                        .background()
+                        .cornerRadius(20)
+                        .frame(width:geometry.size.width-36,height:80)
                         if vm.searchResult.searchResult.first?.username != "" {
                             ForEach(vm.searchResult.searchResult) { user in
-                                NavigationLink(destination: OtherProfileView(username: user.username)) {
+                                NavigationLink(destination: OtherProfileView(user:user)) {
                                     UserSearchResult(userInfo:user)
-                                        .frame(width: geometry.size.width-36, height: 100, alignment: .center)
+                                        .frame(width: geometry.size.width-52, height: 72, alignment: .center)
                                         .opacity(isAnimating ? 1 : 0)
                                         .offset(x: isAnimating ? 0 : geometry.size.width, y: 0)
                                         .onAppear(perform: {
@@ -45,6 +52,17 @@ struct SearchView: View {
                         Spacer()
                     }
                     .navigationTitle("Search")
+                    .toolbar {
+                        ToolbarItemGroup(placement: .navigationBarLeading) {
+                            Button {
+                                presentationMode.wrappedValue.dismiss()
+                            } label: {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.white)
+                            }
+
+                        }
+                    }
                 }
                 .frame(maxWidth:.infinity,maxHeight: .infinity)
                 .background(Color("NoirBG"))

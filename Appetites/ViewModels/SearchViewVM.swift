@@ -16,7 +16,7 @@ class SearchViewVM:ObservableObject {
     @Published var searchResult:SearchResult = SearchResult(searchResultCount: 0, searchResult: [SearchResultDetails(username: "", email: "", profilePictureLink: "")])
     
     init(){
-        
+        print("init search")
     }
     
     func search(token:String) {
@@ -28,6 +28,10 @@ class SearchViewVM:ObservableObject {
                     self?.searchResult = returnedValue
                     print(returnedValue)
                 })
+    }
+    
+    deinit{
+        print("deinit search")
     }
     
 }
