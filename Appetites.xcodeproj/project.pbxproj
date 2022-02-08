@@ -78,6 +78,11 @@
 		8C9FFCDD27B24A6F00B4AFBA /* PostComponentDataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */; };
 		8C9FFCDF27B24FE100B4AFBA /* HeartButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCDE27B24FE100B4AFBA /* HeartButtonComponent.swift */; };
 		8C9FFCE127B25B1900B4AFBA /* ClickPostComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9FFCE027B25B1900B4AFBA /* ClickPostComponentView.swift */; };
+		8CAD9D7B27B2BB800015254B /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D7A27B2BB800015254B /* CustomDatePicker.swift */; };
+		8CAD9D7D27B2BB970015254B /* OtherProfileTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D7C27B2BB970015254B /* OtherProfileTab.swift */; };
+		8CAD9D7F27B2BC040015254B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D7E27B2BC040015254B /* DateValue.swift */; };
+		8CAD9D8127B2BC370015254B /* OtherProfileTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D8027B2BC370015254B /* OtherProfileTabModel.swift */; };
+		8CAD9D8327B2BC760015254B /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D8227B2BC760015254B /* ProfilePost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -151,6 +156,11 @@
 		8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostComponentDataList.swift; sourceTree = "<group>"; };
 		8C9FFCDE27B24FE100B4AFBA /* HeartButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartButtonComponent.swift; sourceTree = "<group>"; };
 		8C9FFCE027B25B1900B4AFBA /* ClickPostComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickPostComponentView.swift; sourceTree = "<group>"; };
+		8CAD9D7A27B2BB800015254B /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDatePicker.swift; path = ../../../../../../../Downloads/CustomDatePicker.swift; sourceTree = "<group>"; };
+		8CAD9D7C27B2BB970015254B /* OtherProfileTab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherProfileTab.swift; path = ../../../../../../../Downloads/OtherProfileTab.swift; sourceTree = "<group>"; };
+		8CAD9D7E27B2BC040015254B /* DateValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateValue.swift; path = ../../../../../../Downloads/DateValue.swift; sourceTree = "<group>"; };
+		8CAD9D8027B2BC370015254B /* OtherProfileTabModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherProfileTabModel.swift; path = ../../../../../../Downloads/OtherProfileTabModel.swift; sourceTree = "<group>"; };
+		8CAD9D8227B2BC760015254B /* ProfilePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -346,6 +356,8 @@
 		3A735F5227A5AE92003A88D7 /* Items */ = {
 			isa = PBXGroup;
 			children = (
+				8CAD9D7C27B2BB970015254B /* OtherProfileTab.swift */,
+				8CAD9D7A27B2BB800015254B /* CustomDatePicker.swift */,
 				3A735F5427A5AEA9003A88D7 /* LongButton.swift */,
 				3A6EE25F27A7252700BC6122 /* BackButton.swift */,
 				3A6EE26327A7277800BC6122 /* SearchButton.swift */,
@@ -376,6 +388,9 @@
 		3A735F6527A5CDBE003A88D7 /* Localized */ = {
 			isa = PBXGroup;
 			children = (
+				8CAD9D8227B2BC760015254B /* ProfilePost.swift */,
+				8CAD9D8027B2BC370015254B /* OtherProfileTabModel.swift */,
+				8CAD9D7E27B2BC040015254B /* DateValue.swift */,
 				3A735F6627A5CDD4003A88D7 /* CategoryTabModel.swift */,
 				3A735F6A27A5D741003A88D7 /* TabModel.swift */,
 				8C9FFCDA27B24A5E00B4AFBA /* PostComponentData.swift */,
@@ -476,6 +491,8 @@
 			files = (
 				3A735F5D27A5B8FF003A88D7 /* DiscoverBadge.swift in Sources */,
 				3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */,
+				8CAD9D7B27B2BB800015254B /* CustomDatePicker.swift in Sources */,
+				8CAD9D7D27B2BB970015254B /* OtherProfileTab.swift in Sources */,
 				3A20C31127A5F59700082703 /* ProfileViewVM.swift in Sources */,
 				3A6EE2C527AA78B200BC6122 /* Credentials.swift in Sources */,
 				3A6EE2CF27ABD3C800BC6122 /* InfoFillView.swift in Sources */,
@@ -485,7 +502,9 @@
 				3AA23EB827AD5F3600CA4FBA /* Post.swift in Sources */,
 				3A6EE2BB27AA73C000BC6122 /* UserDataService.swift in Sources */,
 				3A735F6727A5CDD4003A88D7 /* CategoryTabModel.swift in Sources */,
+				8CAD9D8127B2BC370015254B /* OtherProfileTabModel.swift in Sources */,
 				3A735F4027A5A3D7003A88D7 /* Persistence.swift in Sources */,
+				8CAD9D8327B2BC760015254B /* ProfilePost.swift in Sources */,
 				8C9FFCD727B23F6800B4AFBA /* SymbolModifier.swift in Sources */,
 				3A20C30D27A5E8C600082703 /* ProfileBlob.swift in Sources */,
 				3A6EE25C27A716B700BC6122 /* LoginBlob.swift in Sources */,
@@ -537,6 +556,7 @@
 				8C9FFCDB27B24A5E00B4AFBA /* PostComponentData.swift in Sources */,
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
+				8CAD9D7F27B2BC040015254B /* DateValue.swift in Sources */,
 				8C9FFCD927B24A3300B4AFBA /* PostComponentView.swift in Sources */,
 				3A6EE26427A7277800BC6122 /* SearchButton.swift in Sources */,
 			);
