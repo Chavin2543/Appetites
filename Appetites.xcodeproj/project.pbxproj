@@ -67,6 +67,7 @@
 		3A87BECE27B1A1670087F15E /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BECD27B1A1670087F15E /* ProfilePost.swift */; };
 		3A87BED027B21CAA0087F15E /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BECF27B21CAA0087F15E /* CustomDatePicker.swift */; };
 		3A87BED227B21F070087F15E /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BED127B21F070087F15E /* DateValue.swift */; };
+		3A87BED427B2E5EE0087F15E /* UpcomingEventBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A87BED327B2E5EE0087F15E /* UpcomingEventBadge.swift */; };
 		3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */; };
 		3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */; };
 		3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */; };
@@ -134,6 +135,7 @@
 		3A87BECD27B1A1670087F15E /* ProfilePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
 		3A87BECF27B21CAA0087F15E /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		3A87BED127B21F070087F15E /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		3A87BED327B2E5EE0087F15E /* UpcomingEventBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventBadge.swift; sourceTree = "<group>"; };
 		3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewVM.swift; sourceTree = "<group>"; };
 		3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHTTPManager.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				3A6EE25727A6C50E00BC6122 /* SearchBar.swift */,
 				3A87BEC927B19C250087F15E /* OtherProfileTab.swift */,
 				3A2F219927B0396000E7BB42 /* UserSearchResult.swift */,
+				3A87BED327B2E5EE0087F15E /* UpcomingEventBadge.swift */,
 				3A20C30E27A5F3DE00082703 /* CalendarBadge.swift */,
 				3A735F6027A5CADB003A88D7 /* CategoryBadgeList.swift */,
 				3A735F6327A5CD73003A88D7 /* CategoryTab.swift */,
@@ -494,6 +497,7 @@
 				3A6EE2D127ABD90300BC6122 /* AuthViewVM.swift in Sources */,
 				3A20C30B27A5E82200082703 /* ProfileView.swift in Sources */,
 				3A735F5B27A5B7E6003A88D7 /* DiscoverView.swift in Sources */,
+				3A87BED427B2E5EE0087F15E /* UpcomingEventBadge.swift in Sources */,
 				3A20C31727A67ED400082703 /* ProfileBadge.swift in Sources */,
 				3A6EE2D327AC2E9D00BC6122 /* TabViewVM.swift in Sources */,
 				3A20C31527A5F69D00082703 /* SettingView.swift in Sources */,

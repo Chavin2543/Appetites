@@ -16,14 +16,14 @@ struct ProfileBadge: View {
     @Binding var following:Int?
     var body: some View {
         Button(action: buttonAction) {
-            LazyHStack (alignment:.bottom,spacing:4) {
+            LazyHStack (alignment:.center,spacing:32) {
                     LazyVStack {
                         Text("Follower")
                             .font(.footnote.bold())
                             .foregroundColor(.white)
                         Text("\(follower ?? 0)")
-                            .font(.footnote.bold())
-                            .foregroundColor(.white)
+                            .font(.title.bold())
+                            .foregroundColor(Color("NoirGreen"))
                     }
                 
 //                AsyncImage(url: URL(string: profilePic ?? "")) { image in
@@ -40,15 +40,15 @@ struct ProfileBadge: View {
                 WebImage(url: URL(string: profilePic ?? "https://images.pexels.com/photos/10162332/pexels-photo-10162332.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
                         .resizable()
                         .scaledToFill()
-                        .frame(width:120,height:120)
-                        .cornerRadius(120)
+                        .frame(width:130,height:130)
+                        .cornerRadius(130)
                     LazyVStack {
                         Text("Following")
                             .font(.footnote.bold())
                             .foregroundColor(.white)
                         Text("\(following ?? 0)")
-                            .font(.footnote.bold())
-                            .foregroundColor(.white)
+                            .font(.title.bold())
+                            .foregroundColor(Color("NoirGreen"))
                     }
                 }
                 .frame(height:148)
@@ -62,5 +62,6 @@ struct ProfileBadge_Previews: PreviewProvider {
         ProfileBadge(buttonAction: {
             print("He")
         }, profilePic: .constant("https://images.pexels.com/photos/10162332/pexels-photo-10162332.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),follower: .constant(0),following: .constant(0))
+            .background(.black)
     }
 }

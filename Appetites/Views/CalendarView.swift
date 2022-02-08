@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CalendarView: View {
+    @State var date:Date = Date()
+    @Environment(\.presentationMode) private var presentationMode
     var body: some View {
         GeometryReader { geometry in
             ZStack {
@@ -15,7 +17,7 @@ struct CalendarView: View {
                     HStack {
                         HStack {
                             BackButton(){
-                                print("Back")
+                                presentationMode.wrappedValue.dismiss()
                             }
                         }
                         Spacer()
@@ -24,10 +26,13 @@ struct CalendarView: View {
                         }
                     }
                     .frame(width: geometry.size.width-64, height: 97, alignment: .center)
-                    Text("January")
-                        .font(.body.bold())
-                        .foregroundStyle(Color("NoirGrayL"))
+                    CustomDatePicker(currentDate:$date)
+                        .frame(width:geometry.size.width-32)
                     Spacer()
+                    LongButton(title: "Add Event", color: "NoirGreen") {
+                        print("Add Event")
+                    }
+                    .frame(width:geometry.size.width-54)
                 }
             }
             .frame(maxWidth:.infinity)

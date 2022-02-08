@@ -49,5 +49,6 @@ struct OtherProfileTab: View {
 struct OtherProfileTab_Previews: PreviewProvider {
     static var previews: some View {
         OtherProfileTab()
+            .background(.black)
     }
 }

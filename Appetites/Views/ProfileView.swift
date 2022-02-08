@@ -17,7 +17,7 @@ struct ProfileView: View {
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
-                VStack (spacing:28) {
+                VStack (spacing:16) {
                     HStack {
                         Text(userService.user.username ?? "Anonymous")
                             .font(.title.bold())
@@ -40,38 +40,41 @@ struct ProfileView: View {
                         y: isAnimating ? 0 : -100
                     )
                     .foregroundColor(.white)
-                    .frame (
-                        width: geometry.size.width-64,
-                        height: 97,
-                    alignment: .leading)
+                    .frame (height: 97, alignment: .leading)
                     
                     ProfileBadge(buttonAction: {
                         print("HEllO")
                     }, profilePic: $userService.user.profilePictureLink,follower: $userService.user.follower,following: $userService.user.following)
-                    .frame(width: geometry.size.width-64, height: 145, alignment: .center)
+                    .frame(height: 145, alignment: .center)
+                    .opacity(isAnimating ? 1 : 0)
                     
-                    CalendarBadge(buttonAction: {
-                        vm.inCalendar = true
-                    }, registerDate: $userService.user.registerDate)
-                        .frame(width:geometry.size.width-32)
+                    UpcomingEventBadge()
+                        .frame(height: 144, alignment: .center)
+                        .cornerRadius(44)
+                    
+                    HStack (spacing:28) {
+                        CalendarBadge(buttonAction: {
+                            vm.inCalendar = true
+                        })
+                            .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
+                        CalendarBadge(buttonAction: {
+                            vm.inCalendar = true
+                        })
+                            .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
+                    }
                     Spacer()
                 }
+                .frame(width:geometry.size.width-64)
             }
             .fullScreenCover(isPresented: $vm.inSettings, content: {
-                SettingView(vm: SettingViewVM.init())
+                SettingView(vm: SettingViewVM.init(), user:userService.user)
             })
             .fullScreenCover(isPresented: $vm.inCalendar, content: {
                 CalendarView()
             })
             .frame(maxWidth:.infinity)
             .background(
-                ZStack {
-                    Color(
-                        "NoirBG"
-                    )
-                    ProfileBlob()
-                }
-
+                ZStack {Color("NoirBG")}
                     .ignoresSafeArea()
             )
         }
@@ -91,5 +94,6 @@ struct ProfileView_Previews: PreviewProvider {
     
     static var previews: some View {
         ProfileView(vm: ProfileViewVM.init())
+            .environmentObject(UserDataService())
     }
 }

@@ -18,15 +18,13 @@ struct OtherProfileView: View {
                         WebImage(url: URL(string:user.profilePictureLink ?? "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
                             .resizable()
                             .scaledToFill()
-                            .frame(width:geometry.size.width,height:300)
-                        
+                            .frame(width:200,height:200)
+                            .cornerRadius(44)
                             .clipped()
+                        
                         VStack {
                             Text("\(user.username)")
                                 .font(.title.bold())
-                                .foregroundColor(.white)
-                            Text("10 Followers")
-                                .font(.body.bold())
                                 .foregroundColor(.white)
                         }
                         Button {
@@ -42,9 +40,9 @@ struct OtherProfileView: View {
                                 )
                         }
                         OtherProfileTab()
+                            .frame(width:geometry.size.width-40)
                     }
                 }
-                .ignoresSafeArea()
             }
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .background(Color("NoirBG"))

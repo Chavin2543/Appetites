@@ -16,10 +16,11 @@ struct ProfilePost: View {
                     .resizable()
                     .scaledToFill()
                     .frame(width: geometry.size.width, height: 232, alignment: .center)
+                    .cornerRadius(44)
                 .clipped()
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vulputate eget eu vitae euismod amet. Ultrices enim vivamus sem rhoncus, facilisis amet risus,")
                     .foregroundColor(.white)
-                    .frame(width: geometry.size.width-64, height: 120, alignment: .center)
+                    .frame(width: geometry.size.width-16, height: 120, alignment: .center)
                     .lineLimit(4)
             }
             
