@@ -8,6 +8,8 @@
 import Foundation
 import Combine
 import CoreData
+import Firebase
+import SwiftUI
 
 class UserDataService : ObservableObject {
     
@@ -18,7 +20,7 @@ class UserDataService : ObservableObject {
     
     @Published var user:LocalUserInfo = LocalUserInfo()
     
-    @Published var userCredentials:[UserInformation] = []
+    var userCredentials:[UserInformation] = []
     
     var token:String = ""
     
@@ -164,6 +166,120 @@ class UserDataService : ObservableObject {
                     self?.storeUser(userInfo: returnedValue)
                     self?.getFollower()
                 })
+    }
+    
+    func uploadProfilePic(image:UIImage?) {
+        let filename = UUID().uuidString
+        let ref = FirebaseManager.shared.storage.reference(withPath: filename)
+        guard let imageData = image?.jpegData(compressionQuality: 0.05) else {return}
+        ref.putData(imageData,metadata: nil) { metadata , error in
+            if let error = error {
+                print("Upload Failed \(error)")
+                return
+            }
+            ref.downloadURL { url, error in
+                if let error = error {
+                    print("Upload Failed, Exit with : \(error)")
+                    return
+                }
+                print("Upload success url : \(url?.absoluteString ?? "")")
+                guard let targetUrl = url?.absoluteString else {return}
+                self.setProfilePicture(url: targetUrl)
+            }
+        }
+        
+    }
+    
+    func setProfilePicture(url:String) {
+        let body = setProfilePictureBody(url: url)
+        let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/setprofilepicture/token=\(token)")
+        let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
+        
+        return URLSession.shared
+            .dataTaskPublisher(for: urlRequest)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .tryMap{try PostHTTPManager().validateHTTPResponse($0.data, $0.response)}
+            .decode(type: SetProfile.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case.finished:
+                    print("Setup Completed")
+                case.failure(let error):
+                    print("Setup Failed: \(error)")
+                }
+            }, receiveValue: { [weak self] returnedValue in
+                print("\(returnedValue)")
+                self?.updateProfile(url: returnedValue.profilePictureLink)
+                
+            })
+            .store(in: &cancellables)
+    }
+    
+    func setUsername(username:String) {
+        let body = setUsernameBody(username: username)
+        let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/setusername/token=\(token)")
+        let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
+        
+        return URLSession.shared
+            .dataTaskPublisher(for: urlRequest)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .tryMap{try PostHTTPManager().validateHTTPResponse($0.data, $0.response)}
+            .decode(type: SetUsername.self, decoder: JSONDecoder())
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case.finished:
+                    print("Setup Completed")
+                case.failure(let error):
+                    print("Setup Failed: \(error)")
+                }
+            }, receiveValue: { [weak self] returnedValue in
+                print("\(returnedValue)")
+                self?.updateUsername(username: returnedValue.username)
+                
+            })
+            .store(in: &cancellables)
+    }
+    
+    func updateProfile(url:String) {
+        user.profilePictureLink = url
+        let request = NSFetchRequest<UserInformation>(entityName: "UserInformation")
+        do {
+            userCredentials = try container.viewContext.fetch(request)
+            let firstEntry = userCredentials.first
+            firstEntry?.profilePictureLink = url
+            saveData()
+        } catch let error {
+            print("\(error)")
+        }
+        
+    }
+    
+    func updateUsername(username:String) {
+        user.username = username
+        let request = NSFetchRequest<UserInformation>(entityName: "UserInformation")
+        do {
+            userCredentials = try container.viewContext.fetch(request)
+            let firstEntry = userCredentials.first
+            firstEntry?.username = username
+            saveData()
+        } catch let error {
+            print("\(error)")
+        }
+        
+    }
+    
+    func setProfilePictureBody(url:String) -> [String: Any] {
+      [
+        "profilePictureLink": url,
+      ] as [String: Any]
+    }
+    
+    func setUsernameBody(username:String) -> [String: Any] {
+      [
+        "username": username,
+      ] as [String: Any]
     }
     
     func getFollower() {

@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LongButton: View {
-    @State var title:String
-    @State var color:String
+    @Binding var title:String
+    @Binding var color:String
     @State var buttonAction: () -> Void
     
     var body: some View {
@@ -30,7 +30,7 @@ struct LongButton: View {
 
 struct LongButton_Previews: PreviewProvider {
     static var previews: some View {
-        LongButton(title: "Test", color: "NoirGreen") {
+        LongButton(title: .constant("Test"),color: .constant("NoirGreen")) {
             print("Test")
         }
     }

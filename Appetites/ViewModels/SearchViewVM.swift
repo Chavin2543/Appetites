@@ -21,7 +21,6 @@ class SearchViewVM:ObservableObject {
     
     func search(token:String) {
         guard let url = URL(string:"https://appetite-backend-owen.herokuapp.com/searchuser/token=\(token)/searchText=\(searchText)") else {return}
-            print(url)
                 searchSubscription = GetHTTPManager.download(url: url)
             .decode(type: SearchResult.self, decoder: JSONDecoder())
                 .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
@@ -29,6 +28,7 @@ class SearchViewVM:ObservableObject {
                     print(returnedValue)
                 })
     }
+    
     
     deinit{
         print("deinit search")

@@ -15,21 +15,24 @@ struct CalendarBadge: View {
                 Button {
                     buttonAction()
                 } label: {
-                        VStack {
+                        HStack {
                             Text("Calendar")
-                                .padding(.top,24)
-                                .font(.body.bold())
+                                .font(.title2)
                                 .foregroundColor(.white)
-                            Image("Calendar")
-                                .resizable()
-                                .frame(width: 100, height: 100, alignment: .center)
+                                .shadow(color: .black.opacity(0.7), radius: 3, x: 1, y: 1)
+                                .padding(.leading,32)
+                            if let uiImage = UIImage(named: "Calendar")?.downsampled(by: 0.1) {
+                                Image(uiImage:uiImage )
+                                    .resizable()
+                                    .frame(width: 180, height: 180, alignment: .center)
+                                    .padding(.bottom,60)
+                            }
                         }
                 }
 
             }
-        .frame(width:148,height:180)
-        .background(Color("NoirGreen"))
-        .cornerRadius(44.0)
+        .frame(maxWidth:.infinity)
+        .background(Color("NoirGreen").frame(height:124).cornerRadius(24.0))
     }
 }
 

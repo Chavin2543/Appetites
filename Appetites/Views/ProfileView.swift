@@ -6,29 +6,37 @@
 //
 
 import SwiftUI
+import SDWebImage
 
 struct ProfileView: View {
     
-    @StateObject var vm:ProfileViewVM
+    @StateObject var vm = ProfileViewVM()
     @EnvironmentObject private var userService:UserDataService
     
     @State private var isAnimating:Bool = false
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView {
+            ScrollView(showsIndicators:false) {
                 VStack (spacing:16) {
                     HStack {
                         Text(userService.user.username ?? "Anonymous")
                             .font(.title.bold())
                         Button {
-                            print("Test Edit")
+                            vm.isEditingProfile.toggle()
                         } label: {
                             Image(systemName: "pencil")
                                 .font(.title.bold())
                                 .foregroundStyle(Color("NoirYellow"))
                         }
                         Spacer()
+                        
+                        Button {
+                            userService.getUser()
+                        } label: {
+                            Image(systemName: "rays")
+                        }
+                        
                         Button {
                             vm.inSettings = true
                         } label: {
@@ -44,23 +52,30 @@ struct ProfileView: View {
                     
                     ProfileBadge(buttonAction: {
                         print("HEllO")
-                    }, profilePic: $userService.user.profilePictureLink,follower: $userService.user.follower,following: $userService.user.following)
+                    }, loading: .constant(false), profilePic: $userService.user.profilePictureLink,follower: $userService.user.follower,following: $userService.user.following)
                     .frame(height: 145, alignment: .center)
                     .opacity(isAnimating ? 1 : 0)
                     
-                    UpcomingEventBadge()
-                        .frame(height: 144, alignment: .center)
-                        .cornerRadius(44)
-                    
-                    HStack (spacing:28) {
+                    VStack (spacing:20){
+                        UpcomingEventBadge()
+                            .frame(height: 144, alignment: .center)
+                            .cornerRadius(24)
+                            .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
+                        
                         CalendarBadge(buttonAction: {
                             vm.inCalendar = true
                         })
+                            .frame(height:124)
                             .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
-                        CalendarBadge(buttonAction: {
-                            vm.inCalendar = true
+                        
+                        PostBadge(buttonAction: {
+                            vm.inPost = true
                         })
+                            .frame(height:124)
+                            .cornerRadius(24)
                             .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
+                        Color.clear
+                            .frame(height:300)
                     }
                     Spacer()
                 }
@@ -72,6 +87,12 @@ struct ProfileView: View {
             .fullScreenCover(isPresented: $vm.inCalendar, content: {
                 CalendarView()
             })
+            .fullScreenCover(isPresented: $vm.inPost, content: {
+                PersonalPostView()
+            })
+            .fullScreenCover(isPresented: $vm.isEditingProfile, content: {
+                InfoFillView(user: userService.user)
+            })
             .frame(maxWidth:.infinity)
             .background(
                 ZStack {Color("NoirBG")}
@@ -81,10 +102,15 @@ struct ProfileView: View {
         .onAppear {
             withAnimation(.spring(response: 0.9, dampingFraction: 0.9, blendDuration: 0.4)) {
                 isAnimating.toggle()
+                userService.getUser()
             }
         }
         .onDisappear {
             isAnimating.toggle()
+            SDImageCache.shared.clear(with: .all) {
+                print("Memory Cleared")
+            }
+            
         }
 
     }

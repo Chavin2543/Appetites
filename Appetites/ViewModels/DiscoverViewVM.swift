@@ -14,7 +14,7 @@ class DiscoverViewVM: ObservableObject {
     
     
     init() {
-        print("Hello")
+        print("Init Discover")
     }
     
     func search() {
@@ -22,6 +22,7 @@ class DiscoverViewVM: ObservableObject {
     }
     
     deinit{
+        print("Deinit Discover")
     }
 }
 

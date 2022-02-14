@@ -20,8 +20,8 @@ struct ContentView: View {
                     VStack {
                         Spacer()
                         LongButton(
-                            title: "Get Started",
-                            color: "NoirYellow"
+                            title:.constant("Get Started"),
+                            color: .constant("NoirYellow")
                         ) {
                             withAnimation(.spring(response: 0.9, dampingFraction: 0.9, blendDuration: 0.4)) {
                                 isFirstTime = false

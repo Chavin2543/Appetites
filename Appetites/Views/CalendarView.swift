@@ -29,7 +29,7 @@ struct CalendarView: View {
                     CustomDatePicker(currentDate:$date)
                         .frame(width:geometry.size.width-32)
                     Spacer()
-                    LongButton(title: "Add Event", color: "NoirGreen") {
+                    LongButton(title: .constant("Add Event"), color: .constant("NoirGreen")) {
                         print("Add Event")
                     }
                     .frame(width:geometry.size.width-54)

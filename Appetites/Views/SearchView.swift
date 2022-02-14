@@ -22,8 +22,10 @@ struct SearchView: View {
                     VStack {
                         HStack {
                             Image(systemName: "magnifyingglass")
+                                .font(.body.bold())
                                 .padding(.leading,8)
                             TextField("Search", text: $vm.searchText)
+                                .font(.body.bold())
                                 .frame(height:40)
                                 .onChange(of: vm.searchText) { newValue in
                                     if(vm.searchText != "") {
@@ -31,12 +33,12 @@ struct SearchView: View {
                                     }
                             }
                         }
-                        .background()
+                        .background(Color("NoirGrayD"))
                         .cornerRadius(20)
                         .frame(width:geometry.size.width-36,height:80)
                         if vm.searchResult.searchResult.first?.username != "" {
                             ForEach(vm.searchResult.searchResult) { user in
-                                NavigationLink(destination: OtherProfileView(user:user)) {
+                                NavigationLink(destination: OtherProfileView(token: token, user:user)) {
                                     UserSearchResult(userInfo:user)
                                         .frame(width: geometry.size.width-52, height: 72, alignment: .center)
                                         .opacity(isAnimating ? 1 : 0)

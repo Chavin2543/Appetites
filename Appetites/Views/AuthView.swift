@@ -56,7 +56,7 @@ struct AuthView: View {
                             Divider()
                         }
                         .frame(height:200)
-                        LongButton(title: "Login", color: "NoirGreen") {
+                        LongButton(title: .constant("Login"), color: .constant("NoirGreen")) {
                             userService.login(email: email, password: password)
                         }
                             .disabled(userService.isLoading)

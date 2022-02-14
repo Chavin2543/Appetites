@@ -9,49 +9,77 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OtherProfileView: View {
-    @State var user:SearchResultDetails
+    @Environment(\.presentationMode) private var presentationMode
+    @StateObject private var vm:OtherProfileViewVM
+    @EnvironmentObject private var userService:UserDataService
+    
+    init(token:String,user:SearchResultDetails) {
+        _vm = StateObject(wrappedValue: OtherProfileViewVM(token: token, user: user))
+    }
+    
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                ScrollView {
-                    VStack (spacing:20) {
-                        WebImage(url: URL(string:user.profilePictureLink ?? "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width:200,height:200)
-                            .cornerRadius(44)
-                            .clipped()
-                        
-                        VStack {
-                            Text("\(user.username)")
-                                .font(.title.bold())
-                                .foregroundColor(.white)
-                        }
+            ScrollView{
+                VStack (spacing:16) {
+                    HStack {
                         Button {
-                            print("Followed")
+                            presentationMode.wrappedValue.dismiss()
                         } label: {
-                            Text("Follow")
-                                .font(.body.bold())
-                                .foregroundColor(.white)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 44)
-                                        .frame(width: 132, height: 36, alignment: .center)
-                                        .foregroundColor(Color("NoirGreen"))
-                                )
+                            Image(systemName: "chevron.left")
+                                .font(.title)
                         }
-                        OtherProfileTab()
-                            .frame(width:geometry.size.width-40)
+
+                        Text(vm.user.username ?? "Anonymous")
+                            .font(.title.bold())
+                        Button {
+                            print("Test Edit")
+                        } label: {
+                            Image(systemName: "pencil")
+                                .font(.title.bold())
+                                .foregroundStyle(Color("NoirYellow"))
+                        }
+                        Spacer()
                     }
+                    .foregroundColor(.white)
+                    .frame (height: 97, alignment: .leading)
+                    
+                    ProfileBadge(buttonAction: {
+                        print("Enter")
+                    }, loading: $vm.isLoading, profilePic: $vm.dataFromSearch.profilePictureLink, follower: $vm.user.follower, following: $vm.user.following)
+                    
+                    if userService.user.username != vm.dataFromSearch.username {
+                        LongButton(title:vm.isFollowing ? .constant("Unfollow") : .constant("Follow"), color:vm.isFollowing ? .constant("NoirGrayL") : .constant("NoirGreen")) {
+                            if vm.isFollowing {
+                                vm.unfollow()
+                            } else {
+                                vm.follow()
+                            }
+                        }
+                    }
+                    
+                    UpcomingEventBadge()
+                        .frame(height: 144, alignment: .center)
+                        .cornerRadius(24)
+                    
+                    CalendarBadge(buttonAction: {
+                            print("Calendar")
+                    })
                 }
+                .frame(width:geometry.size.width-64)
             }
-            .frame(maxWidth:.infinity,maxHeight: .infinity)
-            .background(Color("NoirBG"))
+            .navigationBarHidden(true)
+            .preferredColorScheme(.dark)
+            .frame(maxWidth:.infinity)
+            .background(
+                ZStack {Color("NoirBG")}
+                    .ignoresSafeArea()
+            )
         }
     }
 }
 
 struct OtherProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        OtherProfileView(user:SearchResultDetails(username: "OwenRatana", email: "Loong@email.com", profilePictureLink: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
+        OtherProfileView(token: "", user:SearchResultDetails(username: "OwenRatana", email: "Loong@email.com", profilePictureLink: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
     }
 }
