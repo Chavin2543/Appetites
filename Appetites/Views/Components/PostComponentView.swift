@@ -100,7 +100,7 @@ struct PostComponent: View {
                             //MARK: COMMENT BAR
                         
                             HStack {
-                                Image("photo-loong") //INPUT PROFILE PICTURE
+                                Image(posts.userpic) //INPUT PROFILE PICTURE
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 40, height: 40)

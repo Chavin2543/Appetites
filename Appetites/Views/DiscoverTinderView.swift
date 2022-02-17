@@ -96,16 +96,9 @@ struct DiscoverTinderView: View {
                     }.padding([.leading],32)
                     Spacer()
                 }
-                
-                
-            /*    // MARK: - OLD HEADER
-                HeaderView(showGuideView: $showGuide, showInfoView: $showInfo)
-                    .opacity(dragState.isDragging ? 0.0 : 1.0)
-                    .animation(.default)
-                */
                 Spacer()
                 
-                //Mark: - CARDS
+                //MARK: - CARDS
                 ZStack {
                     ForEach(cardViews) { cardView in cardView
                             .zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)

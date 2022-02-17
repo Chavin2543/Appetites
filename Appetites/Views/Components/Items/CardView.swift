@@ -19,37 +19,7 @@ struct CardView: View, Identifiable {
             .frame(width:304, height:540)
             .cornerRadius(24)
             .scaledToFit()
-       /* MARK: OLD OVERLAY
-        .overlay(
-                VStack(alignment: .center, spacing: 12) {
-                    Text(appetite.foodname.uppercased())
-                        .foregroundColor(Color.white)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .shadow(radius: 1)
-                        .padding(.horizontal, 18)
-                        .padding(.vertical, 4)
-                        .overlay(
-                            Rectangle()
-                                .fill(Color.white)
-                                .frame(height: 1),
-                            alignment: .bottom
-                        )
-                    Text(appetite.restaurantname.uppercased())
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                        .font(.footnote)
-                        .frame(minWidth: 85)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(
-                            Capsule().fill(Color.white)
-                        )
-                }
-                .frame(minWidth:280)
-                .padding(.bottom,50),
-                alignment: .bottom
-            ) */
+
         //MARK: NEW OVERLAY
             .overlay(
                 VStack{

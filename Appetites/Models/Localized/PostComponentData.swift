@@ -8,6 +8,7 @@
 import Foundation
 
 struct PostComponentData : Identifiable {
+    
     var ownerpic: String
     var ownername: String
     var datetime: String
@@ -16,7 +17,8 @@ struct PostComponentData : Identifiable {
     var likestatus: Bool
     var likecount: Int
     var commentcount: Int
-    var userpic: String
+    var userpic:String
+    var eachcomment: [[String]] //photo, name, caption
     
     var id:String {
         ownerpic

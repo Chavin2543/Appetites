@@ -21,7 +21,8 @@ var postdata: [PostComponentData] = [
         likestatus: false,
         likecount: 43,
         commentcount: 5,
-        userpic: "photo-loong"
+        userpic: "photo-loong",
+        eachcomment: [["photo-loong","loongallday","Lorem ipsum dolor sit amet"],["photo-owen","lalitratana","consectetur adipiscing elit"],["photo-owen","lalitratana","sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]]
     ),
     PostComponentData(
         ownerpic: "photo-steak",
@@ -32,7 +33,8 @@ var postdata: [PostComponentData] = [
         likestatus: false,
         likecount: 144,
         commentcount: 2,
-        userpic: "photo-loong"
+        userpic: "photo-loong",
+        eachcomment: [["photo-loong","loongallday","Lorem ipsum dolor sit amet"],["photo-owen","lalitratana","consectetur adipiscing elit"],["photo-owen","lalitratana","sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]]
     ),
     PostComponentData(
         ownerpic: "photo-owen",
@@ -43,6 +45,7 @@ var postdata: [PostComponentData] = [
         likestatus: false,
         likecount: 9,
         commentcount: 6,
-        userpic: "photo-loong"
+        userpic: "photo-loong",
+        eachcomment: [["photo-loong","loongallday","Lorem ipsum dolor sit amet"],["photo-owen","lalitratana","consectetur adipiscing elit"],["photo-owen","lalitratana","sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."]]
     )
 ]
