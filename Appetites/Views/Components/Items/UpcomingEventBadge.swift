@@ -44,7 +44,7 @@ struct UpcomingEventBadge: View {
                 .frame(width:geometry.size.width-48)
             }
             .frame(width:geometry.size.width,height:144)
-            .background(Color("NoirGrayD"))
+            .background(Color("NoirBG"))
         }
     }
 }

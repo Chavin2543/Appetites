@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarBadge: View {
+    
     @State var buttonAction: () -> Void
     
     var body: some View {
@@ -15,24 +16,36 @@ struct CalendarBadge: View {
                 Button {
                     buttonAction()
                 } label: {
-                        HStack {
-                            Text("Calendar")
-                                .font(.title2)
-                                .foregroundColor(.white)
-                                .shadow(color: .black.opacity(0.7), radius: 3, x: 1, y: 1)
-                                .padding(.leading,32)
-                            if let uiImage = UIImage(named: "Calendar")?.downsampled(by: 0.1) {
-                                Image(uiImage:uiImage )
-                                    .resizable()
-                                    .frame(width: 180, height: 180, alignment: .center)
-                                    .padding(.bottom,60)
+                    HStack {
+                        Circle()
+                            .frame(width:33)
+                            .foregroundColor(Color("NoirGreen"))
+                        Text("Calendar")
+                            .font(.headline.bold())
+                            .foregroundColor(.white)
+                        Spacer()
+                        ZStack {
+                            Capsule()
+                                .frame(width: 59, height: 24)
+                            HStack (spacing:2) {
+                                Text("2 New")
+                                    .foregroundColor(.white)
+                                    .fontWeight(.semibold)
+                                    .font(.system(size:11))
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                                    .font(.system(size:10))
                             }
+                            
                         }
+                        
+                        
+                    }
                 }
 
             }
+        .frame(height:33)
         .frame(maxWidth:.infinity)
-        .background(Color("NoirGreen").frame(height:124).cornerRadius(24.0))
     }
 }
 
@@ -41,5 +54,6 @@ struct CalendarBadge_Previews: PreviewProvider {
         CalendarBadge(buttonAction: {
             print("H")
         })
+        .background(.black)
     }
 }

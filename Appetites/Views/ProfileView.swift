@@ -48,7 +48,7 @@ struct ProfileView: View {
                         y: isAnimating ? 0 : -100
                     )
                     .foregroundColor(.white)
-                    .frame (height: 97, alignment: .leading)
+                    .frame (width:geometry.size.width-64,height: 97, alignment: .leading)
                     
                     ProfileBadge(buttonAction: {
                         print("HEllO")
@@ -56,30 +56,32 @@ struct ProfileView: View {
                     .frame(height: 145, alignment: .center)
                     .opacity(isAnimating ? 1 : 0)
                     
-                    VStack (spacing:20){
-                        UpcomingEventBadge()
-                            .frame(height: 144, alignment: .center)
-                            .cornerRadius(24)
+                    VStack (spacing:34){
+                        VStack {
+                            UpcomingEventBadge()
+                                .frame(height: 144, alignment: .center)
+                                .cornerRadius(24)
                             .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
+                        }
+                        .frame(width:geometry.size.width-64)
+                        .shadow(color: .black.opacity(0.25), radius: 4, x: 4, y: 4)
+                        .shadow(color: .gray.opacity(0.1), radius: 1, x: -4, y: -4)
+                        VStack (spacing:24) {
+                            CalendarBadge {
+                                vm.inCalendar.toggle()
+                            }
+                            PostBadge {
+                                vm.inPost.toggle()
+                            }
+                        }
+                        .frame(width:geometry.size.width-64)
                         
-                        CalendarBadge(buttonAction: {
-                            vm.inCalendar = true
-                        })
-                            .frame(height:124)
-                            .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
-                        
-                        PostBadge(buttonAction: {
-                            vm.inPost = true
-                        })
-                            .frame(height:124)
-                            .cornerRadius(24)
-                            .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
                         Color.clear
                             .frame(height:300)
                     }
                     Spacer()
                 }
-                .frame(width:geometry.size.width-64)
+                .frame(width:geometry.size.width)
             }
             .fullScreenCover(isPresented: $vm.inSettings, content: {
                 SettingView(vm: SettingViewVM.init(), user:userService.user)
