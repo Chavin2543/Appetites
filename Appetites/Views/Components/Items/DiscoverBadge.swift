@@ -15,7 +15,7 @@ struct DiscoverBadge: View {
                 RoundedRectangle(cornerRadius: 24.0,style: .continuous)
                     .frame(
                         height: 263)
-                    .foregroundStyle(Color("NoirGrayM"))
+                    .foregroundStyle(Color("NoirBG"))
                 Image("FrenzyMode")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -28,6 +28,8 @@ struct DiscoverBadge: View {
             }
             .cornerRadius(24.0)
         }
+        .shadow(color: .black.opacity(0.6), radius: 3, x: 3, y: 3)
+        .shadow(color: .gray.opacity(0.3), radius: 3, x: -3, y: -3)
     }
 }
 

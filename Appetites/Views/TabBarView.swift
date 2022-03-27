@@ -12,7 +12,7 @@ struct TabBarView: View {
     
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var userService:UserDataService
-    
+    private var feed:GetPost?
     @StateObject private var postService = PostDataService()
      
     @State var selectedTab:Tab = .home
@@ -24,8 +24,10 @@ struct TabBarView: View {
                     case .home:
                         HomeView()
                             .environmentObject(postService)
+                            .environmentObject(userService)
                     case .discover:
-                        DiscoverView(vm: DiscoverViewVM.init())
+                        DiscoverView(token:userService.token)
+                            .environmentObject(postService)
                     case .post:
                         PostView(selectedTab: $selectedTab, token: userService.token)
                     case .notification:
@@ -67,6 +69,7 @@ struct TabBarView: View {
             }
             .onAppear{
                 postService.getPosts(token: userService.token)
+                postService.getFeedPosts(token: userService.token, limit: "20", offset:"0")
             }
             .fullScreenCover(isPresented: !$userService.isAuthenticated, content: {
                 AuthView(vm: AuthViewVM.init())

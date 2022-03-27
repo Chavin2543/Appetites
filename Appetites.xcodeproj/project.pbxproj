@@ -30,6 +30,13 @@
 		3A2F219F27B03A9A00E7BB42 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F219E27B03A9A00E7BB42 /* SearchResult.swift */; };
 		3A2F21A127B03AC300E7BB42 /* SearchResultDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F21A027B03AC300E7BB42 /* SearchResultDetails.swift */; };
 		3A2F21A327B04EC800E7BB42 /* OtherProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2F21A227B04EC800E7BB42 /* OtherProfileView.swift */; };
+		3A3E1F7227E9281500D916E6 /* LikePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E1F7127E9281500D916E6 /* LikePost.swift */; };
+		3A3E1F7427E929CA00D916E6 /* EventDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3E1F7327E929CA00D916E6 /* EventDataService.swift */; };
+		3A4C073D27F0A141007BB380 /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C073C27F0A141007BB380 /* PostDetailsView.swift */; };
+		3A4C073F27F0D3E8007BB380 /* PostDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C073E27F0D3E8007BB380 /* PostDetailsVM.swift */; };
+		3A4C074127F0E4B7007BB380 /* PostInfoFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */; };
+		3A4C074327F0F264007BB380 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074227F0F264007BB380 /* Comment.swift */; };
+		3A4C074527F0F3BE007BB380 /* CommentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074427F0F3BE007BB380 /* CommentDetail.swift */; };
 		3A5A20F027B41E0100119631 /* PostBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20EF27B41E0100119631 /* PostBadge.swift */; };
 		3A5A20F227B4274F00119631 /* PersonalPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20F127B4274F00119631 /* PersonalPostView.swift */; };
 		3A5A20F427B4280600119631 /* PersonalPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20F327B4280600119631 /* PersonalPost.swift */; };
@@ -118,6 +125,13 @@
 		3A2F219E27B03A9A00E7BB42 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		3A2F21A027B03AC300E7BB42 /* SearchResultDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDetails.swift; sourceTree = "<group>"; };
 		3A2F21A227B04EC800E7BB42 /* OtherProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherProfileView.swift; sourceTree = "<group>"; };
+		3A3E1F7127E9281500D916E6 /* LikePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePost.swift; sourceTree = "<group>"; };
+		3A3E1F7327E929CA00D916E6 /* EventDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDataService.swift; sourceTree = "<group>"; };
+		3A4C073C27F0A141007BB380 /* PostDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsView.swift; sourceTree = "<group>"; };
+		3A4C073E27F0D3E8007BB380 /* PostDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsVM.swift; sourceTree = "<group>"; };
+		3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoFillView.swift; sourceTree = "<group>"; };
+		3A4C074227F0F264007BB380 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		3A4C074427F0F3BE007BB380 /* CommentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetail.swift; sourceTree = "<group>"; };
 		3A5A20EF27B41E0100119631 /* PostBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBadge.swift; sourceTree = "<group>"; };
 		3A5A20F127B4274F00119631 /* PersonalPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPostView.swift; sourceTree = "<group>"; };
 		3A5A20F327B4280600119631 /* PersonalPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPost.swift; sourceTree = "<group>"; };
@@ -221,6 +235,7 @@
 			children = (
 				3A6EE2BA27AA73C000BC6122 /* UserDataService.swift */,
 				3A8EC73F27B4FBAB00CAED9F /* PostDataService.swift */,
+				3A3E1F7327E929CA00D916E6 /* EventDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -325,6 +340,8 @@
 				3A5A20F127B4274F00119631 /* PersonalPostView.swift */,
 				3A6EE2CE27ABD3C800BC6122 /* InfoFillView.swift */,
 				3A8EC73B27B4ECD200CAED9F /* PostView.swift */,
+				3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */,
+				3A4C073C27F0A141007BB380 /* PostDetailsView.swift */,
 				3A20C31427A5F69D00082703 /* SettingView.swift */,
 				3A6EE25D27A7170800BC6122 /* AuthView.swift */,
 				3A20C30827A5E7EF00082703 /* NotificationView.swift */,
@@ -343,6 +360,7 @@
 				3A20C31027A5F59700082703 /* ProfileViewVM.swift */,
 				3A2F219B27B039CD00E7BB42 /* SearchViewVM.swift */,
 				3A8EC73727B4868900CAED9F /* InfoFillViewVM.swift */,
+				3A4C073E27F0D3E8007BB380 /* PostDetailsVM.swift */,
 				3A8EC73D27B4F09600CAED9F /* PostViewVM.swift */,
 				3A87BED527B39CC40087F15E /* OtherProfileViewVM.swift */,
 				3A6EE2D027ABD90300BC6122 /* AuthViewVM.swift */,
@@ -381,6 +399,7 @@
 				3A6EE25F27A7252700BC6122 /* BackButton.swift */,
 				3A6EE26327A7277800BC6122 /* SearchButton.swift */,
 				3A735F5E27A5C8EE003A88D7 /* CategoryBadge.swift */,
+				3A4C074227F0F264007BB380 /* Comment.swift */,
 				3A735F5C27A5B8FF003A88D7 /* DiscoverBadge.swift */,
 				3A5A20F327B4280600119631 /* PersonalPost.swift */,
 				3A87BECD27B1A1670087F15E /* ProfilePost.swift */,
@@ -451,6 +470,8 @@
 			isa = PBXGroup;
 			children = (
 				3A8EC74227B4FDAD00CAED9F /* CreatePost.swift */,
+				3A4C074427F0F3BE007BB380 /* CommentDetail.swift */,
+				3A3E1F7127E9281500D916E6 /* LikePost.swift */,
 				3AD51CE327B58CFE003319A0 /* GetPost.swift */,
 				3AD51CE527B58D55003319A0 /* PostDetails.swift */,
 			);
@@ -545,6 +566,7 @@
 				3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */,
 				3A20C31127A5F59700082703 /* ProfileViewVM.swift in Sources */,
 				3A87BED227B21F070087F15E /* DateValue.swift in Sources */,
+				3A4C074327F0F264007BB380 /* Comment.swift in Sources */,
 				3A87BEDC27B3B0F60087F15E /* IsFollowed.swift in Sources */,
 				3A6EE2C527AA78B200BC6122 /* Credentials.swift in Sources */,
 				3A6EE2CF27ABD3C800BC6122 /* InfoFillView.swift in Sources */,
@@ -560,6 +582,7 @@
 				3A8EC73427B4856300CAED9F /* SetProfile.swift in Sources */,
 				3A8EC72E27B4827800CAED9F /* FirebaseManager.swift in Sources */,
 				3A6EE25C27A716B700BC6122 /* LoginBlob.swift in Sources */,
+				3A3E1F7227E9281500D916E6 /* LikePost.swift in Sources */,
 				3A2F219627B029C700E7BB42 /* FollowingDetails.swift in Sources */,
 				3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */,
 				3A735F5527A5AEA9003A88D7 /* LongButton.swift in Sources */,
@@ -568,6 +591,7 @@
 				3A2F219A27B0396000E7BB42 /* UserSearchResult.swift in Sources */,
 				3A8EC73C27B4ECD200CAED9F /* PostView.swift in Sources */,
 				3A6EE2BE27AA748900BC6122 /* PostHTTPManager.swift in Sources */,
+				3A4C074127F0E4B7007BB380 /* PostInfoFillView.swift in Sources */,
 				3A20C31327A5F69400082703 /* UserStatusBadge.swift in Sources */,
 				3A2F21A127B03AC300E7BB42 /* SearchResultDetails.swift in Sources */,
 				3A735F4327A5A3D7003A88D7 /* Appetites.xcdatamodeld in Sources */,
@@ -576,9 +600,11 @@
 				3A735F6427A5CD73003A88D7 /* CategoryTab.swift in Sources */,
 				3A8EC73A27B48A5200CAED9F /* SetUsername.swift in Sources */,
 				3A6EE26227A726BA00BC6122 /* CalendarView.swift in Sources */,
+				3A4C073F27F0D3E8007BB380 /* PostDetailsVM.swift in Sources */,
 				3A8EC73E27B4F09600CAED9F /* PostViewVM.swift in Sources */,
 				3AA23EBC27ADA1F300CA4FBA /* UserInfo.swift in Sources */,
 				3A735F5127A5ABDE003A88D7 /* OnboardingBlob.swift in Sources */,
+				3A3E1F7427E929CA00D916E6 /* EventDataService.swift in Sources */,
 				3A20C30727A5E3A100082703 /* LottieFood.swift in Sources */,
 				3A6EE26027A7252700BC6122 /* BackButton.swift in Sources */,
 				3A6EE25827A6C50E00BC6122 /* SearchBar.swift in Sources */,
@@ -595,6 +621,7 @@
 				3A735F3727A5A3D6003A88D7 /* AppetitesApp.swift in Sources */,
 				3A87BECA27B19C250087F15E /* OtherProfileTab.swift in Sources */,
 				3A6EE25A27A6C5A400BC6122 /* SearchView.swift in Sources */,
+				3A4C073D27F0A141007BB380 /* PostDetailsView.swift in Sources */,
 				3A2F219227B0287B00E7BB42 /* Follower.swift in Sources */,
 				3A735F6127A5CADB003A88D7 /* CategoryBadgeList.swift in Sources */,
 				3AD51CE627B58D55003319A0 /* PostDetails.swift in Sources */,
@@ -605,6 +632,7 @@
 				3A87BED427B2E5EE0087F15E /* UpcomingEventBadge.swift in Sources */,
 				3A20C31727A67ED400082703 /* ProfileBadge.swift in Sources */,
 				3A6EE2D327AC2E9D00BC6122 /* TabViewVM.swift in Sources */,
+				3A4C074527F0F3BE007BB380 /* CommentDetail.swift in Sources */,
 				3A20C31527A5F69D00082703 /* SettingView.swift in Sources */,
 				3A87BED027B21CAA0087F15E /* CustomDatePicker.swift in Sources */,
 				3A87BECC27B19C7C0087F15E /* OtherProfileTabModel.swift in Sources */,

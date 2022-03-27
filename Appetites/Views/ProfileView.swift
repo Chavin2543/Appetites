@@ -12,6 +12,7 @@ struct ProfileView: View {
     
     @StateObject var vm = ProfileViewVM()
     @EnvironmentObject private var userService:UserDataService
+    @EnvironmentObject private var postService:PostDataService
     
     @State private var isAnimating:Bool = false
     
@@ -70,7 +71,7 @@ struct ProfileView: View {
                             CalendarBadge {
                                 vm.inCalendar.toggle()
                             }
-                            PostBadge {
+                            PostBadge(postCount:postService.post.postCount) {
                                 vm.inPost.toggle()
                             }
                         }

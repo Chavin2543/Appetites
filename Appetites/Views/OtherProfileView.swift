@@ -9,17 +9,17 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OtherProfileView: View {
+    var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     @Environment(\.presentationMode) private var presentationMode
-    @StateObject private var vm:OtherProfileViewVM
     @EnvironmentObject private var userService:UserDataService
+    @EnvironmentObject private var postService:PostDataService
+    @StateObject private var vm = OtherProfileViewVM()
+    @State var otherUser:SearchResultDetails
     
-    init(token:String,user:SearchResultDetails) {
-        _vm = StateObject(wrappedValue: OtherProfileViewVM(token: token, user: user))
-    }
     
     var body: some View {
         GeometryReader { geometry in
-            ScrollView{
+            ScrollView (showsIndicators:false){
                 VStack (spacing:16) {
                     HStack {
                         Button {
@@ -29,7 +29,7 @@ struct OtherProfileView: View {
                                 .font(.title)
                         }
 
-                        Text(vm.user.username ?? "Anonymous")
+                        Text(otherUser.username)
                             .font(.title.bold())
                         Button {
                             print("Test Edit")
@@ -45,14 +45,14 @@ struct OtherProfileView: View {
                     
                     ProfileBadge(buttonAction: {
                         print("Enter")
-                    }, loading: $vm.isLoading, profilePic: $vm.dataFromSearch.profilePictureLink, follower: $vm.user.follower, following: $vm.user.following)
+                    }, loading: $vm.isLoading, profilePic:$otherUser.profilePictureLink, follower: $vm.user.follower, following: $vm.user.following)
                     
                     if userService.user.username != vm.dataFromSearch.username {
                         LongButton(title:vm.isFollowing ? .constant("Unfollow") : .constant("Follow"), color:vm.isFollowing ? .constant("NoirGrayL") : .constant("NoirGreen")) {
                             if vm.isFollowing {
-                                vm.unfollow()
+                                vm.unfollow(token: userService.token, email:otherUser.email )
                             } else {
-                                vm.follow()
+                                vm.follow(token: userService.token, email: otherUser.email)
                             }
                         }
                     }
@@ -64,6 +64,22 @@ struct OtherProfileView: View {
                     CalendarBadge(buttonAction: {
                             print("Calendar")
                     })
+                    
+                    LazyVGrid(columns: items, alignment: .center, spacing: 4) {
+                        ForEach(postService.otherUserPost.posts) { item in
+                            NavigationLink(destination: PostDetailsView(post: item,user: userService.user).environmentObject(postService)) {
+                                WebImage(url: URL(string: item.photoLinksList?.first ?? "https://images.pexels.com/photos/11012766/pexels-photo-11012766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: geometry.size.width*0.27,height: geometry.size.width*0.27)
+                                    .clipped()
+                            }
+                        }
+                    }
+//
+//                    ForEach(postService.otherUserPost.posts) { post in
+//                        Text("\(post.postID)")
+//                    }
                 }
                 .frame(width:geometry.size.width-64)
             }
@@ -74,12 +90,16 @@ struct OtherProfileView: View {
                 ZStack {Color("NoirBG")}
                     .ignoresSafeArea()
             )
+            .onAppear {
+                vm.getFollower(token: userService.token, email: otherUser.email)
+                postService.getOtherUserPosts(token: userService.token, otherEmail: otherUser.email, limit: "100", offset: "0")
+            }
         }
     }
 }
 
 struct OtherProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        OtherProfileView(token: "", user:SearchResultDetails(username: "OwenRatana", email: "Loong@email.com", profilePictureLink: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"))
+        OtherProfileView(otherUser: SearchResultDetails(username: "", email: "", profilePictureLink: ""))
     }
 }

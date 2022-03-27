@@ -6,194 +6,144 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct Post: View {
     
     @State private var messageText:String = ""
-    
+    var likeButtonAction: () -> Void
+    var commentButtonAction: () -> Void
+    @State var post:PostDetails
+    var profilePicURL:String?
     var body: some View {
-        
-        GeometryReader { geometry in
             ZStack {
-                VStack {
+                VStack(spacing:15) {
                     HStack (spacing:16) {
-                        Image("Avatar1")
+                        WebImage(url: URL(string: post.profilePictureLink ?? "https://images.pexels.com/photos/10808064/pexels-photo-10808064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"))
                             .resizable()
                             .scaledToFill()
-                            .frame(width: 48, height: 48, alignment: .center)
-                        VStack (alignment:.leading,spacing:8) {
-                            Text("Loongallday")
-                                .font(.system(size: 16).bold())
-                                .foregroundColor(.gray)
-                            Text("20 April 20.48")
-                                .font(.system(size: 12).bold())
+                            .frame(width: 48, height: 48)
+                            .cornerRadius(24)
+                        VStack (alignment:.leading,spacing: 8) {
+                            Text("\(post.username ?? "Cant retrieve")")
+                                .font(.system(size:16).bold())
+                                .foregroundColor(Color("NoirGrayL"))
+                            Text("\(post.postDate ?? "Can't Retrieve")")
+                                .font(.system(size:14))
+                                .fontWeight(.regular)
                                 .foregroundColor(Color("NoirGrayL"))
                         }
                         Spacer()
                     }
-                    .padding(.top,32)
-                    .frame(width: geometry.size.width - 32, height: 80, alignment: .center)
-                    Text("sdfjdslfjdslkfjdsklfjdskljfdsfjkdsjfkdsjfdlskjfklsdjfsdklfjsdklfjdfdsfdskfjdslkfjlsdkjfdklsjfklsdjfkljsdfdsfljsdfkjsddsfsdlkflksjdfksdjf")
-                        .lineLimit(2)
-                        .frame(width: geometry.size.width-32, height: 44, alignment: .leading)
-                    Image("Burger")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width-32, height: 160, alignment: .center)
-                        .background()
-                        .cornerRadius(24)
-                    Rectangle()
-                        .frame(width: geometry.size.width-32, height: 1, alignment: .center)
-                        .padding()
-                        .foregroundColor(Color("NoirGrayL"))
-                    
-                    HStack (spacing:24) {
-                        HStack (spacing:8) {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.white)
-                                .frame(width: 16, height: 16, alignment: .center)
-                            Text("Likes")
-                                .foregroundColor(.white)
-                        }
-                        
-                        HStack (spacing:8) {
-                            Image(systemName: "heart.fill")
-                                .foregroundColor(.white)
-                                .frame(width: 16, height: 16, alignment: .center)
-                            Text("Likes")
-                                .foregroundColor(.white)
+                    .padding(.leading,16)
+                    VStack (alignment:.leading) {
+                        HStack {
+                            Text("\(post.postCaption ?? "")")
+                                .font(.system(size:20))
+                                .fontWeight(.regular)
+                            .foregroundColor(.white)
+                            Spacer()
                         }
                     }
-                    Rectangle()
-                        .frame(width: geometry.size.width, height: 1, alignment: .center)
-
-                        .foregroundColor(Color("NoirGrayL"))
-                    HStack {
-                        Image("Avatar1")
+                    .padding(.horizontal,20)
+                    VStack {
+                        WebImage(url: URL(string: post.photoLinksList?.first ?? ""))
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 40, height: 40, alignment: .center)
-                        TextField("Comment", text: $messageText)
+                            .cornerRadius(25)
+                            .padding(.horizontal,25)
                     }
-                    .frame(width: geometry.size.width-64, alignment: .center)
-                    Spacer()
+//                    RoundedRectangle(cornerRadius: 20)
+//                        .frame(height:200)
+//                        .foregroundColor(.black)
+//                        .padding(.horizontal,16)
+                    HStack(spacing:24) {
+                        HStack {
+                            Button {
+                                if !post.isLiked! {
+                                    likeButtonAction()
+                                    post.likeCount! += 1
+                                    post.isLiked?.toggle()
+                                } else {
+                                    commentButtonAction()
+                                    post.likeCount! -= 1
+                                    post.isLiked?.toggle()
+                                }
+                            } label: {
+                                HStack {
+                                    Image(systemName: "heart.fill")
+                                        .foregroundColor((post.isLiked)! ? .red : Color("NoirGrayL"))
+    
+                                }
+                            }
+                        }
+                        
+                        HStack {
+                            Button {
+                                commentButtonAction()
+                            } label: {
+                                HStack {
+                                    Image(systemName: "message.fill")
+                                        .foregroundColor(Color("NoirGrayL"))
+                                }
+                            }
+                        }
+                        Text("\(post.likeCount ?? 0) ")
+                            .font(.system(size:16).bold())
+                            .foregroundColor(Color("NoirGrayL"))
+                        +
+                        Text("Likes")
+                            .font(.system(size:16))
+                            .foregroundColor(Color("NoirGrayL"))
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal,25)
+                    .padding(.vertical,10)
+                    
+                    
+                    HStack {
+                        WebImage(url: URL(string: profilePicURL ?? ""))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 24, height: 24)
+                            .cornerRadius(20)
+//                        Image("Avatar1")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 40, height: 40)
+                        TextField("Write Comments", text: $messageText)
+                            .preferredColorScheme(.dark)
+                            .font(.system(size: 16))
+                        Button {
+                            messageText = ""
+                        } label: {
+                            Image(systemName: "paperplane.fill")
+                                .resizable()
+                                .foregroundColor(Color("NoirGrayL"))
+                                .frame(width: 12, height: 12)
+                        }
+
+                    }
+                    .padding(.horizontal,25)
                 }
             }
-            .frame(height:460)
             .frame(maxWidth:.infinity)
-            .background(
-                RoundedRectangle(cornerRadius: 24)
-                    .foregroundColor(Color("NoirGrayD"))
-            )
-            
-        }
-        
-        
-//           RoundedRectangle(cornerRadius: 24)
-//               .fill(Color(UIColor(named: "NoirBG")!))
-//               .overlay(
-//                   VStack{
-//                       //MARK: PROFILE PICTURE
-//                       HStack(alignment: .center){
-//                           Image("Avatar1") //INPUT PROFILE PICTURE
-//                               .resizable()
-//                               .aspectRatio(contentMode: .fill)
-//                               .frame(width: 48, height: 48)
-//                               .cornerRadius(48)
-//                           VStack {
-//                               HStack {
-//                                   Text("Loong") //INPUT USERNAME
-//                                       .bold()
-//                                       .font(.system(size: 16))
-//                                       .foregroundColor(.white)
-//                               }
-//                               HStack {
-//                                   Text("19 JAN 2021") //INPUT DATETIME
-//                                       .font(.system(size: 12))
-//                                       .foregroundColor(.gray)
-//                               }
-//                           }
-//                           Spacer()
-//                       }
-//                       //MARK: CAPTION
-//                       HStack {
-//                           Text("CAPTION LMAO") //INPUT CAPTION
-//                               .font(.system(size: 12))
-//                               .bold()
-//                               .foregroundColor(.white)
-//                               .frame(width: 280, alignment: .center)
-//                       }
-//
-//
-//                       //MARK: POSTED IMAGE
-//                       HStack {
-//                           Image("Burger") //INPUT PHOTO
-//                               .resizable()
-//                               .frame(width: 280, height: 160)
-//                               .scaledToFill()
-//                               .cornerRadius(24)
-//                       }
-//                       Divider().background(.white).padding(.horizontal).padding(.vertical, 4)
-//
-//                       //MARK: LIKE AND COMMENT VISUALISE
-//                       HStack {
-//
-//                           //HeartButton(isLiked: $isLiked)
-//                           //    .font(.system(size: 16))
-//                           Text("10" + " Likes") //INPUT N LIKE
-//                               .foregroundColor((Color(UIColor(named: "NoirGrayD")!)))
-//                               .font(.system(size: 12))
-//                           Image(systemName: "text.bubble.fill")
-//                               .foregroundColor((Color(UIColor(named: "NoirGrayD")!)))
-//                               .font(.system(size: 16))
-////                               .padding(.leading, basicleftpadding)
-//                           Text("10" + " Comments") //INPUT N COMMENT
-//                               .foregroundColor((Color(UIColor(named: "NoirGrayD")!)))
-//                               .font(.system(size: 12))
-//                           Spacer()
-//                       }
-////                       .padding(.leading, basicleftpadding)
-//                       Divider().background(.white).padding(.vertical, 4)
-//                       //MARK: COMMENT BAR
-//                       HStack {
-//                           Image("Avatar1") //INPUT PROFILE PICTURE
-//                               .resizable()
-//                               .aspectRatio(contentMode: .fill)
-//                               .frame(width: 40, height: 40)
-//                               .clipShape(Circle())
-//                               .overlay(Circle().stroke(.black,lineWidth: 2))
-//
-//                          TextField("   Comment...", text: $messageText)
-//                               .foregroundColor(.gray)
-//                               .padding(.vertical,8)
-//                               .background(Color.white.opacity(0.3))
-//                               .cornerRadius(16)
-//                               .onSubmit {
-//                                   sendMessage(message: messageText)
-//                               }
-//                           Button {
-//                               sendMessage(message: messageText)
-//                           } label: {
-//                               Image(systemName: "paperplane.fill")
-//                           }
-//                           .font(.system(size: 16))
-//
-//                       }.padding(.horizontal, 16)
-//                   }
-//
-//               )
-//               .frame(width: 316, height: 432,alignment: .center)
-//       }
-//       //MARK: COMMENT SUBMISSION
-//       func sendMessage(message: String) {
-//           self.messageText=""
-//           //SOMEHOW SEND THE COMMENT TO BACKEND
-//       }
+            .padding(.vertical,20)
+            .background(Color("NoirBG"))
+            .cornerRadius(25)
+            .shadow(color: .black.opacity(0.6), radius: 3, x: 3, y: 3)
+            .shadow(color: .gray.opacity(0.3), radius: 3, x: -3, y: -3)
     }
 }
 
 struct Post_Previews: PreviewProvider {
     static var previews: some View {
-        Post()
+        Post(likeButtonAction: {
+            print("Test")
+        }, commentButtonAction: {
+            print("Test")
+        }, post: PostDetails(postID: 0))
+
     }
 }

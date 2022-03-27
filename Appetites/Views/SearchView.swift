@@ -10,10 +10,10 @@ import SwiftUI
 struct SearchView: View {
     
     @State private var isAnimating:Bool = false
-    
+    @EnvironmentObject private var postService:PostDataService
+    @EnvironmentObject private var userService:UserDataService
     @Environment(\.presentationMode) private var presentationMode
     @StateObject private var vm = SearchViewVM()
-    @State var token:String
     
     var body: some View {
         GeometryReader  { geometry in
@@ -29,7 +29,7 @@ struct SearchView: View {
                                 .frame(height:40)
                                 .onChange(of: vm.searchText) { newValue in
                                     if(vm.searchText != "") {
-                                        vm.search(token: token)
+                                        vm.search(token: userService.token)
                                     }
                             }
                         }
@@ -38,7 +38,7 @@ struct SearchView: View {
                         .frame(width:geometry.size.width-36,height:80)
                         if vm.searchResult.searchResult.first?.username != "" {
                             ForEach(vm.searchResult.searchResult) { user in
-                                NavigationLink(destination: OtherProfileView(token: token, user:user)) {
+                                NavigationLink(destination: OtherProfileView(otherUser: user)) {
                                     UserSearchResult(userInfo:user)
                                         .frame(width: geometry.size.width-52, height: 72, alignment: .center)
                                         .opacity(isAnimating ? 1 : 0)
@@ -49,6 +49,7 @@ struct SearchView: View {
                                             }
                                         })
                                 }
+
                             }
                         }
                         Spacer()
@@ -76,6 +77,6 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(token: "")
+        SearchView()
     }
 }

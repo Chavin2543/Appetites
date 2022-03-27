@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostBadge: View {
+    var postCount:Int?
     @State var buttonAction: () -> Void
     var body: some View {
         ZStack {
@@ -26,7 +27,7 @@ struct PostBadge: View {
                         Capsule()
                             .frame(width: 59, height: 24)
                         HStack (spacing:2) {
-                            Text("99+")
+                            Text("\(postCount ?? 0)")
                                 .foregroundColor(.white)
                                 .fontWeight(.semibold)
                                 .font(.system(size:11))

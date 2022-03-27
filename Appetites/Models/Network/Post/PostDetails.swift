@@ -17,6 +17,10 @@ struct PostDetails:Identifiable,Codable {
     var likeCount:Int?
     var commentCount:Int?
     var isLiked:Bool?
+    var username:String?
+    var profilePictureLink:String?
+    var isBookmarked:Bool?
+    var comments:[CommentDetail]?
     
     var id:Int {
         postID

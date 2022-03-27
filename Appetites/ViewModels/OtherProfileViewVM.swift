@@ -19,37 +19,35 @@ class OtherProfileViewVM : ObservableObject {
     
     var cancellables = Set<AnyCancellable>()
     
-    init(token:String,user:SearchResultDetails) {
-        self.token = token
-        self.dataFromSearch = user
-        getFollower()
+    init() {
+        
     }
     
-    func getFollower() {
+    func getFollower(token:String,email:String) {
         self.isLoading = true
-        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getotheruserfollower/token=\(token)/otherEmail=\(dataFromSearch.email)") else {return}
+        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getotheruserfollower/token=\(token)/otherEmail=\(email)") else {return}
         userSubscription = GetHTTPManager.download(url: url)
             .decode(type: Followers.self, decoder: JSONDecoder())
             .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
                 self?.user.follower = returnedValue.followerCount
                 print(returnedValue.followerCount)
-                self?.getFollowing()
+                self?.getFollowing(token: token, email: email)
             })
     }
     
-    func getFollowing() {
-        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getotheruserfollowing/token=\(token)/otherEmail=\(dataFromSearch.email)") else {return}
+    func getFollowing(token:String,email:String) {
+        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getotheruserfollowing/token=\(token)/otherEmail=\(email)") else {return}
         userSubscription = GetHTTPManager.download(url: url)
             .decode(type: Followings.self, decoder: JSONDecoder())
             .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
                 self?.user.following = returnedValue.followingCount
                 print(returnedValue.followingCount)
-                self?.isFollow()
+                self?.isFollow(token: token, email: email)
             })
     }
     
-    func isFollow() {
-        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/isfollowed/token=\(token)/checkEmail=\(dataFromSearch.email)") else {return}
+    func isFollow(token:String,email:String) {
+        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/isfollowed/token=\(token)/checkEmail=\(email)") else {return}
         userSubscription = GetHTTPManager.download(url: url)
             .decode(type: IsFollowed.self, decoder: JSONDecoder())
             .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
@@ -59,8 +57,8 @@ class OtherProfileViewVM : ObservableObject {
             })
     }
     
-    func follow() {
-        let body = followBody(email: dataFromSearch.email)
+    func follow(token:String,email:String) {
+        let body = followBody(email: email)
         let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/followuser/token=\(token)")
         let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
         
@@ -85,8 +83,8 @@ class OtherProfileViewVM : ObservableObject {
             .store(in: &cancellables)
     }
     
-    func unfollow() {
-        let body = unfollowBody(email: dataFromSearch.email)
+    func unfollow(token:String,email:String) {
+        let body = unfollowBody(email: email)
         let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/unfollowuser/token=\(token)")
         let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
         

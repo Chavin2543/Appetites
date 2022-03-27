@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct DiscoverView: View {
-    
+    var token:String?
     @State private var isAnimating:Bool = false
     @StateObject var vm = DiscoverViewVM()
     @EnvironmentObject private var userService:UserDataService
-    
+    @EnvironmentObject private var postService:PostDataService
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -68,7 +68,8 @@ struct DiscoverView: View {
             isAnimating.toggle()
         }
         .fullScreenCover(isPresented: $vm.isSearcing) {
-            SearchView(token:userService.token)
+            SearchView()
+                .environmentObject(postService)
         }
     }
 }
