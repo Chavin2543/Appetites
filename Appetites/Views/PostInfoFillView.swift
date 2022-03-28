@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct PostInfoFillView: View {
+    
+    //MARK: - Properties
+    
     var items: [GridItem] = Array(repeating: .init(.fixed(100)), count: 3)
     var image:UIImage?
     @State private var foodtag:[String] = []
@@ -17,6 +20,9 @@ struct PostInfoFillView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
+                
+                //MARK: - Header
+                
                 HStack {
                     Button {
                         print("back")
@@ -36,6 +42,9 @@ struct PostInfoFillView: View {
                     .foregroundColor(.white)
                     Spacer()
                 }
+                
+                //MARK: - HERO
+                
                     Image(uiImage: image!)
                     .resizable()
                     .scaledToFill()
@@ -99,6 +108,8 @@ struct PostInfoFillView: View {
                             }
                     }
                     Spacer()
+                
+                //MARK: - Footer
                                     LongButton(title: .constant("Post"), color: .constant("NoirGreen")) {
 //                                        vm.uploadPostPhoto(image: image, token: token, caption: vm.caption)
 //                                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {

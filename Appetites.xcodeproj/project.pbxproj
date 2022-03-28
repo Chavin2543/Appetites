@@ -37,6 +37,9 @@
 		3A4C074127F0E4B7007BB380 /* PostInfoFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */; };
 		3A4C074327F0F264007BB380 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074227F0F264007BB380 /* Comment.swift */; };
 		3A4C074527F0F3BE007BB380 /* CommentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074427F0F3BE007BB380 /* CommentDetail.swift */; };
+		3A4C074727F11294007BB380 /* HomeViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074627F11294007BB380 /* HomeViewVM.swift */; };
+		3A4C074927F11A29007BB380 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074827F11A29007BB380 /* Constants.swift */; };
+		3A4C074B27F12180007BB380 /* PersonalPostVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C074A27F12180007BB380 /* PersonalPostVM.swift */; };
 		3A5A20F027B41E0100119631 /* PostBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20EF27B41E0100119631 /* PostBadge.swift */; };
 		3A5A20F227B4274F00119631 /* PersonalPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20F127B4274F00119631 /* PersonalPostView.swift */; };
 		3A5A20F427B4280600119631 /* PersonalPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5A20F327B4280600119631 /* PersonalPost.swift */; };
@@ -132,6 +135,9 @@
 		3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInfoFillView.swift; sourceTree = "<group>"; };
 		3A4C074227F0F264007BB380 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		3A4C074427F0F3BE007BB380 /* CommentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentDetail.swift; sourceTree = "<group>"; };
+		3A4C074627F11294007BB380 /* HomeViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewVM.swift; sourceTree = "<group>"; };
+		3A4C074827F11A29007BB380 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3A4C074A27F12180007BB380 /* PersonalPostVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPostVM.swift; sourceTree = "<group>"; };
 		3A5A20EF27B41E0100119631 /* PostBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBadge.swift; sourceTree = "<group>"; };
 		3A5A20F127B4274F00119631 /* PersonalPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPostView.swift; sourceTree = "<group>"; };
 		3A5A20F327B4280600119631 /* PersonalPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalPost.swift; sourceTree = "<group>"; };
@@ -248,6 +254,7 @@
 				3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */,
 				3A8EC72D27B4827800CAED9F /* FirebaseManager.swift */,
 				3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */,
+				3A4C074827F11A29007BB380 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -362,7 +369,9 @@
 				3A8EC73727B4868900CAED9F /* InfoFillViewVM.swift */,
 				3A4C073E27F0D3E8007BB380 /* PostDetailsVM.swift */,
 				3A8EC73D27B4F09600CAED9F /* PostViewVM.swift */,
+				3A4C074A27F12180007BB380 /* PersonalPostVM.swift */,
 				3A87BED527B39CC40087F15E /* OtherProfileViewVM.swift */,
+				3A4C074627F11294007BB380 /* HomeViewVM.swift */,
 				3A6EE2D027ABD90300BC6122 /* AuthViewVM.swift */,
 				3A2F214527ADC58200E7BB42 /* ContentViewVM.swift */,
 				3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */,
@@ -584,6 +593,7 @@
 				3A6EE25C27A716B700BC6122 /* LoginBlob.swift in Sources */,
 				3A3E1F7227E9281500D916E6 /* LikePost.swift in Sources */,
 				3A2F219627B029C700E7BB42 /* FollowingDetails.swift in Sources */,
+				3A4C074927F11A29007BB380 /* Constants.swift in Sources */,
 				3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */,
 				3A735F5527A5AEA9003A88D7 /* LongButton.swift in Sources */,
 				3A87BED627B39CC40087F15E /* OtherProfileViewVM.swift in Sources */,
@@ -641,6 +651,8 @@
 				3A2F219C27B039CD00E7BB42 /* SearchViewVM.swift in Sources */,
 				3A20C30927A5E7EF00082703 /* NotificationView.swift in Sources */,
 				3A8EC74027B4FBAB00CAED9F /* PostDataService.swift in Sources */,
+				3A4C074B27F12180007BB380 /* PersonalPostVM.swift in Sources */,
+				3A4C074727F11294007BB380 /* HomeViewVM.swift in Sources */,
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
 				3A5A20F227B4274F00119631 /* PersonalPostView.swift in Sources */,

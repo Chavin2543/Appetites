@@ -12,7 +12,6 @@ struct DiscoverView: View {
     @State private var isAnimating:Bool = false
     @StateObject var vm = DiscoverViewVM()
     @EnvironmentObject private var userService:UserDataService
-    @EnvironmentObject private var postService:PostDataService
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -69,7 +68,6 @@ struct DiscoverView: View {
         }
         .fullScreenCover(isPresented: $vm.isSearcing) {
             SearchView()
-                .environmentObject(postService)
         }
     }
 }

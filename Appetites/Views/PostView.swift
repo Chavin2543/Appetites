@@ -10,6 +10,8 @@ import SDWebImage
 
 struct PostView: View {
     
+    //MARK: - Properties
+    
     @StateObject private var vm = PostViewVM()
     @State private var fillInfo:Bool = false
     @Binding var selectedTab:Tab
@@ -20,6 +22,9 @@ struct PostView: View {
         GeometryReader { geometry in
             ZStack {
                 VStack (alignment:.center,spacing:0) {
+                    
+                    //MARK: - Headers
+                    
                     HStack {
                         Text("Create\nPost")
                             .font(.largeTitle.bold())
@@ -42,6 +47,9 @@ struct PostView: View {
 
                         }
                     }
+                    
+                    //MARK: - Hero
+                    
                     Button {
                         vm.showImagePicker.toggle()
                     } label: {
@@ -85,6 +93,8 @@ struct PostView: View {
             .fullScreenCover(isPresented: $fillInfo, content: {
                 PostInfoFillView(image: image)
             })
+            
+            //MARK: - Lifecycle
             .onAppear(perform: {
                 if image == nil {
                     vm.showImagePicker = true

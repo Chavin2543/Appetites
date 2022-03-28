@@ -108,6 +108,7 @@ class UserDataService : ObservableObject {
             if try !container.viewContext.fetch(request).isEmpty {
                 userCredentials = try container.viewContext.fetch(request)
                 token = userCredentials.first?.token ?? ""
+                cachedToken = token
                 return true
             } else {
                 print("No token in the system")

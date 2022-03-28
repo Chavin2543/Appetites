@@ -12,8 +12,6 @@ struct ProfileView: View {
     
     @StateObject var vm = ProfileViewVM()
     @EnvironmentObject private var userService:UserDataService
-    @EnvironmentObject private var postService:PostDataService
-    
     @State private var isAnimating:Bool = false
     
     var body: some View {
@@ -71,7 +69,7 @@ struct ProfileView: View {
                             CalendarBadge {
                                 vm.inCalendar.toggle()
                             }
-                            PostBadge(postCount:postService.post.postCount) {
+                            PostBadge(postCount:vm.personalPost.postCount) {
                                 vm.inPost.toggle()
                             }
                         }
@@ -91,7 +89,7 @@ struct ProfileView: View {
                 CalendarView()
             })
             .fullScreenCover(isPresented: $vm.inPost, content: {
-                PersonalPostView()
+                PersonalPostView(post: vm.personalPost)
             })
             .fullScreenCover(isPresented: $vm.isEditingProfile, content: {
                 InfoFillView(user: userService.user)
@@ -104,15 +102,14 @@ struct ProfileView: View {
         }
         .onAppear {
             withAnimation(.spring(response: 0.9, dampingFraction: 0.9, blendDuration: 0.4)) {
+                vm.getPersonalPost(token: userService.token)
                 isAnimating.toggle()
                 userService.getUser()
             }
         }
         .onDisappear {
             isAnimating.toggle()
-            SDImageCache.shared.clear(with: .all) {
-                print("Memory Cleared")
-            }
+            SDImageCache.shared.clear(with: .all)
             
         }
 

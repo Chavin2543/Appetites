@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var postService:PostDataService
+    
+    //MARK: - Properties
     @EnvironmentObject private var userService:UserDataService
     @AppStorage("isFirstTime") var isFirstTime:Bool = true
     @State private var isAnimating:Bool = false
+    @StateObject private var vm = HomeViewVM()
     
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
+                
+                //MARK: - Header
                 ScrollView(showsIndicators:false) {
                     VStack {
                         HStack {
@@ -23,7 +27,7 @@ struct HomeView: View {
                                 .font(.largeTitle.bold())
                             Spacer()
                             Button {
-                                postService.getPosts(token: userService.token)
+                                vm.getPosts(token: userService.token, limit: "40", offset: "0")
                             } label: {
                                 Image(systemName: "arrow.down")
                                     .resizable()
@@ -38,18 +42,23 @@ struct HomeView: View {
                             width: geometry.size.width-64,
                             height: 97,
                             alignment: .leading)
+                        
+                        //MARK: - Feed
+                        
                         VStack (spacing:25) {
-                            ForEach(postService.feed.posts) { post in
-                                NavigationLink(destination: PostDetailsView(post: post).environmentObject(postService)) {
+                            ForEach(vm.feedPosts.posts) { post in
+                                NavigationLink(destination: PostDetailsView(post: post)) {
                                     Post(likeButtonAction: {
-                                        postService.likePosts(token: userService.token, postID: "\(post.postID )")
+                                        vm.likePosts(token: userService.token, postID: "\(post.postID)")
                                     }, commentButtonAction: {
-                                        postService.unlikePost(token: userService.token, postID: "\(post.postID )")
+                                        vm.unlikePosts(token: userService.token, postID: "\(post.postID)")
                                     },post: post,profilePicURL:userService.user.profilePictureLink )
                                         .padding(.horizontal,16)
                                 }
                             }
                         }
+                        
+                        //MARK: - Footer
                         
                         VStack (spacing:10) {
                             Text("That's all from your friends")

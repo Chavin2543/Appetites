@@ -9,10 +9,11 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct OtherProfileView: View {
+    
+    //MARK: - Properties
     var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject private var userService:UserDataService
-    @EnvironmentObject private var postService:PostDataService
     @StateObject private var vm = OtherProfileViewVM()
     @State var otherUser:SearchResultDetails
     
@@ -21,6 +22,8 @@ struct OtherProfileView: View {
         GeometryReader { geometry in
             ScrollView (showsIndicators:false){
                 VStack (spacing:16) {
+                    
+                    //MARK: - Header
                     HStack {
                         Button {
                             presentationMode.wrappedValue.dismiss()
@@ -57,6 +60,8 @@ struct OtherProfileView: View {
                         }
                     }
                     
+                    
+                    //MARK: - Hero Section
                     UpcomingEventBadge()
                         .frame(height: 144, alignment: .center)
                         .cornerRadius(24)
@@ -65,9 +70,11 @@ struct OtherProfileView: View {
                             print("Calendar")
                     })
                     
+                    //MARK: - Post Grid
+                    
                     LazyVGrid(columns: items, alignment: .center, spacing: 4) {
-                        ForEach(postService.otherUserPost.posts) { item in
-                            NavigationLink(destination: PostDetailsView(post: item,user: userService.user).environmentObject(postService)) {
+                        ForEach(vm.userPosts.posts) { item in
+                            NavigationLink(destination: PostDetailsView(post: item,user: userService.user)) {
                                 WebImage(url: URL(string: item.photoLinksList?.first ?? "https://images.pexels.com/photos/11012766/pexels-photo-11012766.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"))
                                     .resizable()
                                     .scaledToFill()
@@ -76,10 +83,6 @@ struct OtherProfileView: View {
                             }
                         }
                     }
-//
-//                    ForEach(postService.otherUserPost.posts) { post in
-//                        Text("\(post.postID)")
-//                    }
                 }
                 .frame(width:geometry.size.width-64)
             }
@@ -90,9 +93,10 @@ struct OtherProfileView: View {
                 ZStack {Color("NoirBG")}
                     .ignoresSafeArea()
             )
+            //MARK: - Lifecycle
             .onAppear {
                 vm.getFollower(token: userService.token, email: otherUser.email)
-                postService.getOtherUserPosts(token: userService.token, otherEmail: otherUser.email, limit: "100", offset: "0")
+                vm.getUserPosts(token: userService.token, otherEmail: otherUser.email, limit: "100", offset: "0")
             }
         }
     }

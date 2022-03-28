@@ -9,8 +9,9 @@ import SwiftUI
 
 struct SearchView: View {
     
+    //MARK: - Properties
+    
     @State private var isAnimating:Bool = false
-    @EnvironmentObject private var postService:PostDataService
     @EnvironmentObject private var userService:UserDataService
     @Environment(\.presentationMode) private var presentationMode
     @StateObject private var vm = SearchViewVM()
@@ -20,6 +21,9 @@ struct SearchView: View {
             NavigationView {
                 ZStack {
                     VStack {
+                        
+                        //MARK: - Headers
+                        
                         HStack {
                             Image(systemName: "magnifyingglass")
                                 .font(.body.bold())
@@ -36,6 +40,9 @@ struct SearchView: View {
                         .background(Color("NoirGrayD"))
                         .cornerRadius(20)
                         .frame(width:geometry.size.width-36,height:80)
+                        
+                        //MARK: - Search Result
+                        
                         if vm.searchResult.searchResult.first?.username != "" {
                             ForEach(vm.searchResult.searchResult) { user in
                                 NavigationLink(destination: OtherProfileView(otherUser: user)) {

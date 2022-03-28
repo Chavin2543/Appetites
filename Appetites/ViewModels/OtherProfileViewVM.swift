@@ -16,7 +16,7 @@ class OtherProfileViewVM : ObservableObject {
     @Published var user:LocalUserInfo = LocalUserInfo()
     @Published var dataFromSearch:SearchResultDetails = SearchResultDetails(username: "", email: "", profilePictureLink: "")
     @Published var isLoading:Bool = false
-    
+    @Published var userPosts:GetPost = GetPost(email: "", token: "", expiresIn: "", postCount: 0, limit: 0, offset: 0, posts: [])
     var cancellables = Set<AnyCancellable>()
     
     init() {
@@ -107,6 +107,29 @@ class OtherProfileViewVM : ObservableObject {
                 self?.user.follower! -= 1
             })
             .store(in: &cancellables)
+    }
+    
+    func getUserPosts(token:String,otherEmail:String,limit:String,offset:String) {
+        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getotheruserposts/token=\(token)/otherEmail=\(otherEmail)/limit=\(limit)/offset=\(offset)") else {return}
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard error == nil else {return}
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            guard response.statusCode == 200 else {return}
+            guard let data = data else {
+                return
+            }
+            do {
+                let decodedPosts = try JSONDecoder().decode(GetPost.self, from: data)
+                DispatchQueue.main.async {
+                    self.userPosts = decodedPosts
+                }
+            } catch {
+                print("\(error.localizedDescription)")
+            }
+        }
+        .resume()
     }
     
     func followBody(email: String) -> [String: Any] {

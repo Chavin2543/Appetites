@@ -187,11 +187,6 @@ class PostDataService : ObservableObject {
             .store(in: &cancellables)
     }
     
-    func updateComment() {
-        print("Updating Comments")
-        
-    }
-    
     func setLikePostBody(postID:String) -> [String: Any] {
       [
         "postID": postID,

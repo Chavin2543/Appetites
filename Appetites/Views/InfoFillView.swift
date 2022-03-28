@@ -9,6 +9,9 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct InfoFillView: View {
+    
+    //MARK: - Properties
+    
     @State private var username:String = ""
     @State var image:UIImage?
     @StateObject private var vm = InfoFillViewVM()
@@ -19,6 +22,7 @@ struct InfoFillView: View {
     var body: some View {
         GeometryReader  { geometry in
             ZStack {
+                //MARK: - Headers
                 VStack {
                     HStack {
                         BackButton(){
@@ -30,7 +34,9 @@ struct InfoFillView: View {
                     Spacer()
                     
                 }
-
+                
+                //MARK: - HERO
+                
                 VStack (spacing:32) {
                     if image != nil {
                         Button {
@@ -70,6 +76,9 @@ struct InfoFillView: View {
                                 .opacity(0.3)
                         )
                 }
+                
+                //MARK: - Save Button
+                
                 VStack {
                     Spacer()
                     LongButton(title: .constant("Save"), color: .constant("NoirGreen")) {
@@ -88,6 +97,9 @@ struct InfoFillView: View {
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .background(Color("NoirBG"))
         }
+        
+        //MARK: - Lifecycle
+        
         .onAppear {
             vm.newUsername = user.username ?? ""
         }
