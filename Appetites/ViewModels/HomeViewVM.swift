@@ -16,6 +16,7 @@ class HomeViewVM:ObservableObject {
     }
     
     func getPosts(token:String,limit:String,offset:String) {
+        self.feedPosts = GetPost(email: "", token: "", expiresIn: "", postCount: 0, limit: 0, offset: 0, posts: [])
         guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getpostsfeed/token=\(token)/limit=\(limit)/offset=\(offset)") else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in
             guard error == nil else {return}

@@ -96,6 +96,10 @@
 		3A8EC73E27B4F09600CAED9F /* PostViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EC73D27B4F09600CAED9F /* PostViewVM.swift */; };
 		3A8EC74027B4FBAB00CAED9F /* PostDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EC73F27B4FBAB00CAED9F /* PostDataService.swift */; };
 		3A8EC74327B4FDAD00CAED9F /* CreatePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8EC74227B4FDAD00CAED9F /* CreatePost.swift */; };
+		3A9F47F1280704CF00526EEC /* DiscoverTinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F47F0280704CF00526EEC /* DiscoverTinderView.swift */; };
+		3A9F47F3280704ED00526EEC /* DiscoverTinderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F47F2280704ED00526EEC /* DiscoverTinderCardView.swift */; };
+		3A9F47F62807053000526EEC /* DiscoverTinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F47F52807053000526EEC /* DiscoverTinder.swift */; };
+		3A9F47F8280706A000526EEC /* DiscoverDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F47F7280706A000526EEC /* DiscoverDataService.swift */; };
 		3AA23EB027AC4BCB00CA4FBA /* SettingViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */; };
 		3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */; };
 		3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */; };
@@ -194,6 +198,10 @@
 		3A8EC73D27B4F09600CAED9F /* PostViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewVM.swift; sourceTree = "<group>"; };
 		3A8EC73F27B4FBAB00CAED9F /* PostDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDataService.swift; sourceTree = "<group>"; };
 		3A8EC74227B4FDAD00CAED9F /* CreatePost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePost.swift; sourceTree = "<group>"; };
+		3A9F47F0280704CF00526EEC /* DiscoverTinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderView.swift; sourceTree = "<group>"; };
+		3A9F47F2280704ED00526EEC /* DiscoverTinderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderCardView.swift; sourceTree = "<group>"; };
+		3A9F47F52807053000526EEC /* DiscoverTinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinder.swift; sourceTree = "<group>"; };
+		3A9F47F7280706A000526EEC /* DiscoverDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverDataService.swift; sourceTree = "<group>"; };
 		3AA23EAF27AC4BCB00CA4FBA /* SettingViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewVM.swift; sourceTree = "<group>"; };
 		3AA23EB127AC54EE00CA4FBA /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		3AA23EB527ACA39C00CA4FBA /* GetHTTPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetHTTPManager.swift; sourceTree = "<group>"; };
@@ -242,6 +250,7 @@
 				3A6EE2BA27AA73C000BC6122 /* UserDataService.swift */,
 				3A8EC73F27B4FBAB00CAED9F /* PostDataService.swift */,
 				3A3E1F7327E929CA00D916E6 /* EventDataService.swift */,
+				3A9F47F7280706A000526EEC /* DiscoverDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -262,6 +271,7 @@
 		3A6EE2BF27AA785700BC6122 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3A9F47F42807050A00526EEC /* Discover */,
 				3A8EC74127B4FD9600CAED9F /* Post */,
 				3A2F219D27B03A9300E7BB42 /* Search */,
 				3A6EE2C027AA786600BC6122 /* User */,
@@ -346,6 +356,7 @@
 				3A2F21A227B04EC800E7BB42 /* OtherProfileView.swift */,
 				3A5A20F127B4274F00119631 /* PersonalPostView.swift */,
 				3A6EE2CE27ABD3C800BC6122 /* InfoFillView.swift */,
+				3A9F47F0280704CF00526EEC /* DiscoverTinderView.swift */,
 				3A8EC73B27B4ECD200CAED9F /* PostView.swift */,
 				3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */,
 				3A4C073C27F0A141007BB380 /* PostDetailsView.swift */,
@@ -406,6 +417,7 @@
 			children = (
 				3A735F5427A5AEA9003A88D7 /* LongButton.swift */,
 				3A6EE25F27A7252700BC6122 /* BackButton.swift */,
+				3A9F47F2280704ED00526EEC /* DiscoverTinderCardView.swift */,
 				3A6EE26327A7277800BC6122 /* SearchButton.swift */,
 				3A735F5E27A5C8EE003A88D7 /* CategoryBadge.swift */,
 				3A4C074227F0F264007BB380 /* Comment.swift */,
@@ -485,6 +497,14 @@
 				3AD51CE527B58D55003319A0 /* PostDetails.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		3A9F47F42807050A00526EEC /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				3A9F47F52807053000526EEC /* DiscoverTinder.swift */,
+			);
+			path = Discover;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -593,10 +613,12 @@
 				3A6EE25C27A716B700BC6122 /* LoginBlob.swift in Sources */,
 				3A3E1F7227E9281500D916E6 /* LikePost.swift in Sources */,
 				3A2F219627B029C700E7BB42 /* FollowingDetails.swift in Sources */,
+				3A9F47F1280704CF00526EEC /* DiscoverTinderView.swift in Sources */,
 				3A4C074927F11A29007BB380 /* Constants.swift in Sources */,
 				3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */,
 				3A735F5527A5AEA9003A88D7 /* LongButton.swift in Sources */,
 				3A87BED627B39CC40087F15E /* OtherProfileViewVM.swift in Sources */,
+				3A9F47F62807053000526EEC /* DiscoverTinder.swift in Sources */,
 				3A2F21A327B04EC800E7BB42 /* OtherProfileView.swift in Sources */,
 				3A2F219A27B0396000E7BB42 /* UserSearchResult.swift in Sources */,
 				3A8EC73C27B4ECD200CAED9F /* PostView.swift in Sources */,
@@ -621,6 +643,7 @@
 				3A8EC73127B484A300CAED9F /* ImagePicker.swift in Sources */,
 				3A5A20F427B4280600119631 /* PersonalPost.swift in Sources */,
 				3A735F6B27A5D741003A88D7 /* TabModel.swift in Sources */,
+				3A9F47F3280704ED00526EEC /* DiscoverTinderCardView.swift in Sources */,
 				3A735F3927A5A3D6003A88D7 /* ContentView.swift in Sources */,
 				3A735F5F27A5C8EE003A88D7 /* CategoryBadge.swift in Sources */,
 				3A735F6D27A5DDF4003A88D7 /* DiscoverViewVM.swift in Sources */,
@@ -656,6 +679,7 @@
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
 				3A5A20F227B4274F00119631 /* PersonalPostView.swift in Sources */,
+				3A9F47F8280706A000526EEC /* DiscoverDataService.swift in Sources */,
 				3A6EE26427A7277800BC6122 /* SearchButton.swift in Sources */,
 				3A87BECE27B1A1670087F15E /* ProfilePost.swift in Sources */,
 				3A87BEDE27B3B2890087F15E /* Unfollow.swift in Sources */,

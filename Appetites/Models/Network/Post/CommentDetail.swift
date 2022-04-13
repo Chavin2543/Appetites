@@ -8,14 +8,13 @@
 import Foundation
 
 struct CommentDetail:Codable {
-    var email:String
+    var userEmail:String
     var username:String?
     var profilePictureLink:String?
     var comment:String
     var commentDate:String
     
     var id:String {
-        email + comment + commentDate
+        userEmail + comment + commentDate
     }
-    
 }

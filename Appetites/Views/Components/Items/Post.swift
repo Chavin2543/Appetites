@@ -62,17 +62,17 @@ struct Post: View {
                             Button {
                                 if !post.isLiked! {
                                     likeButtonAction()
-                                    post.likeCount! += 1
+                                    post.likeCount! -= 1
                                     post.isLiked?.toggle()
                                 } else {
                                     commentButtonAction()
-                                    post.likeCount! -= 1
+                                    post.likeCount! += 1
                                     post.isLiked?.toggle()
                                 }
                             } label: {
                                 HStack {
                                     Image(systemName: "heart.fill")
-                                        .foregroundColor((post.isLiked)! ? .red : Color("NoirGrayL"))
+                                        .foregroundColor(!(post.isLiked)! ? .red : Color("NoirGrayL"))
     
                                 }
                             }

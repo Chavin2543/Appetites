@@ -19,7 +19,7 @@ class PostViewVM : ObservableObject {
         print("Init Post")
     }
     
-    func uploadPostPhoto(image:UIImage?,token:String,caption:String) {
+    func uploadPostPhoto(image:UIImage?,token:String,caption:String,foodTags:[String]) {
         let filename = UUID().uuidString
         let ref = FirebaseManager.shared.storage.reference(withPath: filename)
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else {return}
@@ -35,14 +35,14 @@ class PostViewVM : ObservableObject {
                 }
                 print("Upload success url : \(url?.absoluteString ?? "")")
                 guard let targetUrl = url?.absoluteString else {return}
-                self.createPost(token: token, url: targetUrl, caption: caption)
+                self.createPost(token: token, url: targetUrl, caption: caption, foodTags: foodTags)
             }
         }
         
     }
     
-    func createPost(token:String,url:String,caption:String) {
-        let body = setPostBody(url: url, caption: caption)
+    func createPost(token:String,url:String,caption:String,foodTags:[String]) {
+        let body = setPostBody(url: url, caption: caption, foodTags: foodTags)
         let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/createpost/token=\(token)")
         let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
         
@@ -66,9 +66,9 @@ class PostViewVM : ObservableObject {
             .store(in: &cancellables)
     }
     
-    func setPostBody(url:String,caption:String) -> [String: Any] {
+    func setPostBody(url:String,caption:String,foodTags:[String]) -> [String: Any] {
       [
-        "tagsList" : ["Desserts", "Plant-based"],
+        "tagsList" : foodTags,
         "photoLinksList": [url],
         "postCaption" : caption
       ] as [String: Any]

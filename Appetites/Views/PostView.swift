@@ -91,7 +91,12 @@ struct PostView: View {
                 .frame(width:geometry.size.width-64)
             }
             .fullScreenCover(isPresented: $fillInfo, content: {
-                PostInfoFillView(image: image)
+                PostInfoFillView(image:image, token:token, vm:vm)
+                    .onDisappear {
+                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+                                selectedTab = .home
+                        }
+                    }
             })
             
             //MARK: - Lifecycle

@@ -10,10 +10,17 @@ import SwiftUI
 struct PostInfoFillView: View {
     
     //MARK: - Properties
-    
     var items: [GridItem] = Array(repeating: .init(.fixed(100)), count: 3)
     var image:UIImage?
-    @State private var foodtag:[String] = []
+    var token:String
+    
+    @ObservedObject var vm:PostViewVM
+    
+    @State private var tag1:String = ""
+    @State private var tag2:String = ""
+    @State private var tag3:String = ""
+    
+    @State private var selectedFoodTag:[String] = []
     @State private var caption:String = ""
     @State private var location:String = ""
     @State private var tagList:[String] = ["TagList1","TagList2","TagList3","TagList4","TagList5","TagList6"]
@@ -44,12 +51,12 @@ struct PostInfoFillView: View {
                 }
                 
                 //MARK: - HERO
-                
-                    Image(uiImage: image!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height * 0.3, alignment: .center)
-                    .clipped()
+//
+//                    Image(uiImage: image!)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: geometry.size.width, height: geometry.size.height * 0.3, alignment: .center)
+//                    .clipped()
                     VStack (alignment: .leading, spacing: 5) {
                         Text("Caption")
                             .font(.body)
@@ -79,44 +86,49 @@ struct PostInfoFillView: View {
                 
                 
                     VStack (alignment:.leading) {
-                            Text("Food Tag")
-                                .font(.body)
-                                .fontWeight(.light)
-                                .foregroundColor(.white)
-                                .padding(.leading,32)
-                            LazyVGrid(columns: items, alignment: .center, spacing: 4) {
-                                ForEach(tagList,id:\.self) { item in
-                                    ZStack {
-                                        Capsule()
-                                            .foregroundColor(Color(foodtag.contains(item) ?
-                                                                   "NoirGreen" : "NoirRed"))
-                                            .frame(width: 80, height: 25, alignment: .center)
-                                            .padding(5)
-                                            .onTapGesture {
-                                                if let index = foodtag.firstIndex(of: item) {
-                                                    foodtag.remove(at: index)
-                                                } else {
-                                                    foodtag.append(item)
-                                                }
-                                                print("\(foodtag)")
-                                            }
-                                        Text("\(item)")
-                                            .font(.caption.bold())
-                                            .foregroundColor(.white)
+                        HStack {
+                            Picker("Pick your food tag", selection: $tag1) {
+                                        ForEach(foodTags,id:\.self) { tag in
+                                            Text(tag)
+                                                .foregroundColor(.black)
+                                        }
                                     }
-                                }
-                            }
+                            .pickerStyle(.menu)
+                            .frame(width: geometry.size.width * 0.45)
+                            .background(.white)
+                            .cornerRadius(20)
+                            Picker("Pick your food tag", selection: $tag2) {
+                                        ForEach(foodTags,id:\.self) { tag in
+                                            Text(tag)
+                                                .foregroundColor(.black)
+                                        }
+                                    }
+                            .pickerStyle(.menu)
+                            .frame(width: geometry.size.width * 0.45)
+                            .background(.white)
+                            .cornerRadius(20)
+                            Spacer()
+                        }
                     }
+                    .frame(width:geometry.size.width - 64)
                     Spacer()
                 
                 //MARK: - Footer
-                                    LongButton(title: .constant("Post"), color: .constant("NoirGreen")) {
-//                                        vm.uploadPostPhoto(image: image, token: token, caption: vm.caption)
-//                                        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-//                                            selectedTab = .home
-//                                        }
-                                    }
-                                    .frame(width:geometry.size.width - 64)
+                    LongButton(title: .constant("Post"), color: .constant("NoirGreen")) {
+                        if tag1 != "" {
+                            selectedFoodTag.append(tag1)
+                        }
+                        if tag2 != "" {
+                            selectedFoodTag.append(tag2)
+                        }
+                        if tag3 != "" {
+                            selectedFoodTag.append(tag3)
+                        }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            vm.uploadPostPhoto(image: image, token: token, caption: caption, foodTags:selectedFoodTag)
+                        }
+                            }
+                            .frame(width:geometry.size.width - 64)
                 }
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .background(Color("NoirBG"))
@@ -124,8 +136,9 @@ struct PostInfoFillView: View {
     }
 }
 
-struct PostInfoFillView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostInfoFillView()
-    }
-}
+//struct PostInfoFillView_Previews: PreviewProvider {
+//    @StateObject var vm = PostViewVM()
+//    static var previews: some View {
+//        PostInfoFillView(token: "", vm: vm)
+//    }
+//}

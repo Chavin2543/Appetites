@@ -68,7 +68,7 @@ struct PostDetailsView: View {
                                             .multilineTextAlignment(.leading)
                                         Button {
                                             vm.commentPost(token: userService.token, postID: "\(post.postID)", comment: vm.commentText)
-                                            vm.postDetails.comments?.append(CommentDetail(email: userService.user.email ?? "", username: userService.user.username, profilePictureLink: userService.user.profilePictureLink, comment: vm.commentText, commentDate: "\(Date())"))
+                                            vm.postDetails.comments?.append(CommentDetail(userEmail: userService.user.email ?? "", username: userService.user.username, profilePictureLink: userService.user.profilePictureLink, comment: vm.commentText, commentDate: "\(Date())"))
                                             vm.commentText = ""
                                         } label: {
                                             Image(systemName: "paperplane.fill")
