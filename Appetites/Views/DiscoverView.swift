@@ -36,6 +36,7 @@ struct DiscoverView: View {
                         height: 97,
                     alignment: .leading)
                     DiscoverBadge() {
+                        //MARK: SHOW DISCTIN HERE
                         print("Discover")
                     }
                         .offset (
