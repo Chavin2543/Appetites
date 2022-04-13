@@ -84,6 +84,8 @@
 		8CAD9D7F27B2BC040015254B /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D7E27B2BC040015254B /* DateValue.swift */; };
 		8CAD9D8127B2BC370015254B /* OtherProfileTabModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D8027B2BC370015254B /* OtherProfileTabModel.swift */; };
 		8CAD9D8327B2BC760015254B /* ProfilePost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CAD9D8227B2BC760015254B /* ProfilePost.swift */; };
+		8CE405812806997200A5BD57 /* DiscoverTinderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE405802806997200A5BD57 /* DiscoverTinderModel.swift */; };
+		8CE4058328069A8300A5BD57 /* DiscoverTinderModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CE4058228069A8300A5BD57 /* DiscoverTinderModelList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,6 +165,8 @@
 		8CAD9D7E27B2BC040015254B /* DateValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateValue.swift; path = ../../../../../../Downloads/DateValue.swift; sourceTree = "<group>"; };
 		8CAD9D8027B2BC370015254B /* OtherProfileTabModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OtherProfileTabModel.swift; path = ../../../../../../Downloads/OtherProfileTabModel.swift; sourceTree = "<group>"; };
 		8CAD9D8227B2BC760015254B /* ProfilePost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfilePost.swift; sourceTree = "<group>"; };
+		8CE405802806997200A5BD57 /* DiscoverTinderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderModel.swift; sourceTree = "<group>"; };
+		8CE4058228069A8300A5BD57 /* DiscoverTinderModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderModelList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +318,7 @@
 				3A735F6827A5D735003A88D7 /* TabBarView.swift */,
 				3A735F5A27A5B7E6003A88D7 /* DiscoverView.swift */,
 				8C9FFCC927B22D7200B4AFBA /* DiscoverTinderView.swift */,
+				8C3696E027F30308008626B4 /* TinderManager */,
 				3A735F5627A5B65A003A88D7 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -399,9 +404,18 @@
 				8C9FFCDA27B24A5E00B4AFBA /* PostComponentData.swift */,
 				8C9FFCDC27B24A6F00B4AFBA /* PostComponentDataList.swift */,
 				8C9FFCD127B2396E00B4AFBA /* HoneymoonModel.swift */,
+				8CE405802806997200A5BD57 /* DiscoverTinderModel.swift */,
+				8CE4058228069A8300A5BD57 /* DiscoverTinderModelList.swift */,
 				8C9FFCD327B2397E00B4AFBA /* HoneymoonModelList.swift */,
 			);
 			path = Localized;
+			sourceTree = "<group>";
+		};
+		8C3696E027F30308008626B4 /* TinderManager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TinderManager;
 			sourceTree = "<group>";
 		};
 		8C9FFCD527B23F4C00B4AFBA /* Modifier */ = {
@@ -515,6 +529,7 @@
 				8C9FFCCC27B22FB500B4AFBA /* CardView.swift in Sources */,
 				3A2F219627B029C700E7BB42 /* FollowingDetails.swift in Sources */,
 				3A735F6927A5D735003A88D7 /* TabBarView.swift in Sources */,
+				8CE4058328069A8300A5BD57 /* DiscoverTinderModelList.swift in Sources */,
 				8C9FFCE127B25B1900B4AFBA /* ClickPostComponentView.swift in Sources */,
 				3A735F5527A5AEA9003A88D7 /* LongButton.swift in Sources */,
 				3A2F21A327B04EC800E7BB42 /* OtherProfileView.swift in Sources */,
@@ -558,6 +573,7 @@
 				3A2F219C27B039CD00E7BB42 /* SearchViewVM.swift in Sources */,
 				3A20C30927A5E7EF00082703 /* NotificationView.swift in Sources */,
 				8C9FFCDB27B24A5E00B4AFBA /* PostComponentData.swift in Sources */,
+				8CE405812806997200A5BD57 /* DiscoverTinderModel.swift in Sources */,
 				3AA23EB227AC54EE00CA4FBA /* CoreDataManager.swift in Sources */,
 				3AA23EB627ACA39C00CA4FBA /* GetHTTPManager.swift in Sources */,
 				8CAD9D7F27B2BC040015254B /* DateValue.swift in Sources */,

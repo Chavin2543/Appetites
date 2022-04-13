@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-struct DiscoverMenu {
+struct DiscoverMenu: Decodable, Identifiable {
+    var id: Int
     var foodname: String
     var restaurantname: String
     var image: String
@@ -18,4 +19,21 @@ struct DiscoverMenu {
     
     //postid is pk
     
+}
+
+struct DiscoverMenuOnline: Decodable, Identifiable {
+    var id: Int
+    var foodname: String
+    var restaurantname: String
+    var imageURL: String
+    //var price: String
+    var foodtag: String
+    //var star: Int
+    var like: Int
+    
+    //postid is pk
+}
+
+struct AppetiteResponse: Decodable {
+    let request: [DiscoverMenuOnline]
 }

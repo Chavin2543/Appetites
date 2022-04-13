@@ -23,7 +23,7 @@ struct DiscoverTinderView: View {
     @State var cardViews: [CardView] = {
         var views = [CardView]()
         for index in 0..<2 {
-            views.append(CardView(discovers: discoverdata[index]))
+            views.append(CardView(discovers: discoverTinder[index]))
         }
         return views
     }()
@@ -33,7 +33,7 @@ struct DiscoverTinderView: View {
         cardViews.removeFirst()
         
         self.lastCardIndex += 1
-        let discovers = discoverdata[lastCardIndex % discoverdata.count]
+        let discovers = discoverTinder[lastCardIndex % discoverTinder.count]
         let newCardView = CardView(discovers: discovers)
         
         cardViews.append(newCardView)
@@ -149,6 +149,13 @@ struct DiscoverTinderView: View {
                                     self.moveCards()
                                 }
                                 
+                                //MARK: -TODO LOGEVENT
+                                if drag.translation.width < -self.dragAreaThreshold {
+                                    print("Log Event to Owen")
+                                } else {
+                                    print("Log Event to Owen")
+                                }
+                                
                                 
                             })
                             ).transition(self.cardRemovalTransition)
@@ -162,12 +169,12 @@ struct DiscoverTinderView: View {
                 
             }
         }
+        .background(Color("NoirBG"))
     }
 }
 
 struct DiscoverTinderView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverTinderView()
-            .background(Color("NoirBG"))
     }
 }
