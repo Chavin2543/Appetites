@@ -37,7 +37,6 @@ struct DiscoverView: View {
                     alignment: .leading)
                     DiscoverBadge() {
                         //MARK: SHOW DISCTIN HERE
-                        print("Discover")
                     }
                         .offset (
                             x: isAnimating ? 0 : geometry.size.width,

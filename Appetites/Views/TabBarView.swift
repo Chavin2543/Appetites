@@ -22,7 +22,8 @@ struct TabBarView: View {
                     case .home:
                         HomeView()
                     case .discover:
-                        DiscoverView(token:userService.token)
+                        DiscoverTinderView()
+                        //DiscoverView(token:userService.token)
                     case .post:
                         PostView(selectedTab: $selectedTab, token: userService.token)
                     case .notification:

@@ -108,6 +108,8 @@
 		3AD51CE227B5265C003319A0 /* DownSamplingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE127B5265C003319A0 /* DownSamplingExtension.swift */; };
 		3AD51CE427B58CFE003319A0 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE327B58CFE003319A0 /* GetPost.swift */; };
 		3AD51CE627B58D55003319A0 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE527B58D55003319A0 /* PostDetails.swift */; };
+		8C7F77A8280A9C7300F48F63 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F77A7280A9C7300F48F63 /* CardView.swift */; };
+		8C7F77AA280A9C8700F48F63 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F77A9280A9C8700F48F63 /* CardTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -210,6 +212,8 @@
 		3AD51CE127B5265C003319A0 /* DownSamplingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSamplingExtension.swift; sourceTree = "<group>"; };
 		3AD51CE327B58CFE003319A0 /* GetPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPost.swift; sourceTree = "<group>"; };
 		3AD51CE527B58D55003319A0 /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
+		8C7F77A7280A9C7300F48F63 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		8C7F77A9280A9C8700F48F63 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -357,6 +361,8 @@
 				3A5A20F127B4274F00119631 /* PersonalPostView.swift */,
 				3A6EE2CE27ABD3C800BC6122 /* InfoFillView.swift */,
 				3A9F47F0280704CF00526EEC /* DiscoverTinderView.swift */,
+				8C7F77A9280A9C8700F48F63 /* CardTransition.swift */,
+				8C7F77A7280A9C7300F48F63 /* CardView.swift */,
 				3A8EC73B27B4ECD200CAED9F /* PostView.swift */,
 				3A4C074027F0E4B7007BB380 /* PostInfoFillView.swift */,
 				3A4C073C27F0A141007BB380 /* PostDetailsView.swift */,
@@ -652,6 +658,7 @@
 				3A87BEDA27B3AA670087F15E /* Follow.swift in Sources */,
 				3A2F219427B028B100E7BB42 /* FollowerDetails.swift in Sources */,
 				3A735F3727A5A3D6003A88D7 /* AppetitesApp.swift in Sources */,
+				8C7F77A8280A9C7300F48F63 /* CardView.swift in Sources */,
 				3A87BECA27B19C250087F15E /* OtherProfileTab.swift in Sources */,
 				3A6EE25A27A6C5A400BC6122 /* SearchView.swift in Sources */,
 				3A4C073D27F0A141007BB380 /* PostDetailsView.swift in Sources */,
@@ -683,6 +690,7 @@
 				3A6EE26427A7277800BC6122 /* SearchButton.swift in Sources */,
 				3A87BECE27B1A1670087F15E /* ProfilePost.swift in Sources */,
 				3A87BEDE27B3B2890087F15E /* Unfollow.swift in Sources */,
+				8C7F77AA280A9C8700F48F63 /* CardTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
