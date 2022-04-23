@@ -10,9 +10,10 @@ import SwiftUI
 struct DiscoverTinderView: View {
     @EnvironmentObject private var userService:UserDataService
     @EnvironmentObject private var postService:PostDataService
-    @StateObject private var discoverService = DiscoverDataService()
+    @EnvironmentObject private var discoverService:DiscoverDataService
     
     @State var showAlert: Bool = false
+    @State var bookmartIndex:Int = 0
     @State private var isNavigatingBack:Bool = false
     @GestureState private var dragState = DragState.inactive
     private var dragAreaThreshold: CGFloat = 65.0
@@ -22,28 +23,27 @@ struct DiscoverTinderView: View {
     
     // MARK: - CARD VIEWS
     
-    @State var cardViews: [CardView] = {
-        var views = [CardView]()
-        for index in 0..<2 {
-            views.append(CardView(discovers: DiscoverTinderMenu[index]))
-        }
-        return views
-    }()
+//    @State var cardViews: [CardView] = {
+//        var views = [CardView]()
+//        for index in 0..<2 {
+//            views.append(CardView(discovers: DiscoverTinderMenu[index]))
+//        }
+//        return views
+//    }()
     
     //MARK: MOVE THE CARD
     private func moveCards() {
-        cardViews.removeFirst()
-        
+        print("REMOVE : \(discoverService.displayPosts.first) And Count = \(discoverService.displayPosts.count) ")
+        discoverService.displayPosts.removeFirst()
         self.lastCardIndex += 1
-        let discovers = DiscoverTinderMenu[lastCardIndex % DiscoverTinderMenu.count]
-        let newCardView = CardView(discovers: discovers)
-        
-        cardViews.append(newCardView)
+        if discoverService.displayPosts.count == 0 {
+            discoverService.retrieveRecommendedPost(token: userService.token)
+        }
     }
     
     //MARK: TOP CARD
     private func isTopCard(cardView: CardView) -> Bool {
-        guard let index = cardViews.firstIndex(where: { $0.id == cardView.id}) else {
+        guard let index = discoverService.displayPosts.firstIndex(where: { $0.id == cardView.id}) else {
             return false
         }
         return index == 0
@@ -99,24 +99,24 @@ struct DiscoverTinderView: View {
                     Spacer()
                 }
                 Spacer()
-                
                 //MARK: - CARDS
                 ZStack {
-                    ForEach(cardViews) { cardView in cardView
+                    ForEach(discoverService.displayPosts) { cardView in cardView
                             .zIndex(self.isTopCard(cardView: cardView) ? 1 : 0)
                             .overlay(
                                 ZStack {
                                     Image(systemName: "x.circle")
-                                        //.modifier(SymbolModifier())
+                                        .modifier(SymbolModifier())
                                         .opacity(self.dragState.translation.width < -self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
                                     
                                     
                                     Image(systemName: "bookmark.circle") //BOOKMARK SIGN
-                                        //.modifier(SymbolModifier())
+                                        .modifier(SymbolModifier())
                                         .opacity(self.dragState.translation.width > self.dragAreaThreshold && self.isTopCard(cardView: cardView) ? 1.0 : 0.0)
                                 }
                             )
                             .offset(x: self.isTopCard(cardView: cardView) ? self.dragState.translation.width : 0, y: self.isTopCard(cardView: cardView) ?  self.dragState.translation.height : 0)
+                            .opacity(self.isTopCard(cardView: cardView) ? 1 : 0)
                             .scaleEffect(self.dragState.isDragging && self.isTopCard(cardView: cardView) ? 0.85 : 1.0)
                             .rotationEffect(Angle(degrees: self.isTopCard(cardView: cardView) ?  Double(self.dragState.translation.width / 12) : 0))
                             .animation(.interpolatingSpring(stiffness: 120, damping: 120))
@@ -145,18 +145,19 @@ struct DiscoverTinderView: View {
                             })
                             .onEnded({ (value) in
                                 guard case .second(true, let drag?) = value else { return }
-                                
                                 if drag.translation.width < -self.dragAreaThreshold || drag.translation.width > self.dragAreaThreshold {
                                     //playSound(sound: "sound-rise", type: "mp3")
                                     self.moveCards()
-                                    print("card moved")
                                 }
                                 
                                 //MARK: -TODO LOGEVENT
                                 if drag.translation.width < -self.dragAreaThreshold {
-                                    print("Log Event to Owen")
-                                } else {
-                                    print("Log Event to Owen")
+                                    print("SWIPE : LEFT Ignore Post")
+                                    bookmartIndex += 1
+                                } else if drag.translation.width > self.dragAreaThreshold {
+                                    print("SWIPE : RIGHT Log Event to Owen")
+                                    discoverService.logBookmark(token: userService.token, postID:"\(discoverService.recommendedPost[bookmartIndex].postID)")
+                                    bookmartIndex += 1
                                 }
                                 
                                 
@@ -179,5 +180,6 @@ struct DiscoverTinderView: View {
 struct DiscoverTinderView_Previews: PreviewProvider {
     static var previews: some View {
         DiscoverTinderView()
+            .environmentObject(DiscoverDataService())
     }
 }

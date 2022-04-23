@@ -105,5 +105,6 @@ struct OtherProfileView: View {
 struct OtherProfileView_Previews: PreviewProvider {
     static var previews: some View {
         OtherProfileView(otherUser: SearchResultDetails(username: "", email: "", profilePictureLink: ""))
+            .environmentObject(UserDataService())
     }
 }

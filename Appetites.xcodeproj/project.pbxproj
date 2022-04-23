@@ -108,8 +108,12 @@
 		3AD51CE227B5265C003319A0 /* DownSamplingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE127B5265C003319A0 /* DownSamplingExtension.swift */; };
 		3AD51CE427B58CFE003319A0 /* GetPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE327B58CFE003319A0 /* GetPost.swift */; };
 		3AD51CE627B58D55003319A0 /* PostDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AD51CE527B58D55003319A0 /* PostDetails.swift */; };
+		8C31067E280C48DB00ACF5AF /* SymbolModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C31067D280C48DB00ACF5AF /* SymbolModifier.swift */; };
 		8C7F77A8280A9C7300F48F63 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F77A7280A9C7300F48F63 /* CardView.swift */; };
 		8C7F77AA280A9C8700F48F63 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7F77A9280A9C8700F48F63 /* CardTransition.swift */; };
+		8CA8959B2813E8B400869DF5 /* DiscoverTinderOnline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA8959A2813E8B400869DF5 /* DiscoverTinderOnline.swift */; };
+		8CA8959D2813FB2F00869DF5 /* DiscoverTinderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA8959C2813FB2F00869DF5 /* DiscoverTinderViewModel.swift */; };
+		8CA8959F28140E2700869DF5 /* RecommendPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA8959E28140E2700869DF5 /* RecommendPost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,8 +216,12 @@
 		3AD51CE127B5265C003319A0 /* DownSamplingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownSamplingExtension.swift; sourceTree = "<group>"; };
 		3AD51CE327B58CFE003319A0 /* GetPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPost.swift; sourceTree = "<group>"; };
 		3AD51CE527B58D55003319A0 /* PostDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetails.swift; sourceTree = "<group>"; };
+		8C31067D280C48DB00ACF5AF /* SymbolModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolModifier.swift; sourceTree = "<group>"; };
 		8C7F77A7280A9C7300F48F63 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		8C7F77A9280A9C8700F48F63 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
+		8CA8959A2813E8B400869DF5 /* DiscoverTinderOnline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderOnline.swift; sourceTree = "<group>"; };
+		8CA8959C2813FB2F00869DF5 /* DiscoverTinderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTinderViewModel.swift; sourceTree = "<group>"; };
+		8CA8959E28140E2700869DF5 /* RecommendPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendPost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +263,7 @@
 				3A8EC73F27B4FBAB00CAED9F /* PostDataService.swift */,
 				3A3E1F7327E929CA00D916E6 /* EventDataService.swift */,
 				3A9F47F7280706A000526EEC /* DiscoverDataService.swift */,
+				8CA8959E28140E2700869DF5 /* RecommendPost.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,6 +370,7 @@
 				3A5A20F127B4274F00119631 /* PersonalPostView.swift */,
 				3A6EE2CE27ABD3C800BC6122 /* InfoFillView.swift */,
 				3A9F47F0280704CF00526EEC /* DiscoverTinderView.swift */,
+				8C31067D280C48DB00ACF5AF /* SymbolModifier.swift */,
 				8C7F77A9280A9C8700F48F63 /* CardTransition.swift */,
 				8C7F77A7280A9C7300F48F63 /* CardView.swift */,
 				3A8EC73B27B4ECD200CAED9F /* PostView.swift */,
@@ -383,6 +393,7 @@
 				3A735F6C27A5DDF4003A88D7 /* DiscoverViewVM.swift */,
 				3A20C31027A5F59700082703 /* ProfileViewVM.swift */,
 				3A2F219B27B039CD00E7BB42 /* SearchViewVM.swift */,
+				8CA8959C2813FB2F00869DF5 /* DiscoverTinderViewModel.swift */,
 				3A8EC73727B4868900CAED9F /* InfoFillViewVM.swift */,
 				3A4C073E27F0D3E8007BB380 /* PostDetailsVM.swift */,
 				3A8EC73D27B4F09600CAED9F /* PostViewVM.swift */,
@@ -509,6 +520,7 @@
 			isa = PBXGroup;
 			children = (
 				3A9F47F52807053000526EEC /* DiscoverTinder.swift */,
+				8CA8959A2813E8B400869DF5 /* DiscoverTinderOnline.swift */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -634,6 +646,7 @@
 				3A2F21A127B03AC300E7BB42 /* SearchResultDetails.swift in Sources */,
 				3A735F4327A5A3D7003A88D7 /* Appetites.xcdatamodeld in Sources */,
 				3A2F219027B0283500E7BB42 /* Following.swift in Sources */,
+				8CA8959B2813E8B400869DF5 /* DiscoverTinderOnline.swift in Sources */,
 				3AD51CE427B58CFE003319A0 /* GetPost.swift in Sources */,
 				3A735F6427A5CD73003A88D7 /* CategoryTab.swift in Sources */,
 				3A8EC73A27B48A5200CAED9F /* SetUsername.swift in Sources */,
@@ -666,6 +679,7 @@
 				3A735F6127A5CADB003A88D7 /* CategoryBadgeList.swift in Sources */,
 				3AD51CE627B58D55003319A0 /* PostDetails.swift in Sources */,
 				3A6EE2D127ABD90300BC6122 /* AuthViewVM.swift in Sources */,
+				8CA8959D2813FB2F00869DF5 /* DiscoverTinderViewModel.swift in Sources */,
 				3A20C30B27A5E82200082703 /* ProfileView.swift in Sources */,
 				3A8EC74327B4FDAD00CAED9F /* CreatePost.swift in Sources */,
 				3A735F5B27A5B7E6003A88D7 /* DiscoverView.swift in Sources */,
@@ -680,6 +694,8 @@
 				3A2F219F27B03A9A00E7BB42 /* SearchResult.swift in Sources */,
 				3A2F219C27B039CD00E7BB42 /* SearchViewVM.swift in Sources */,
 				3A20C30927A5E7EF00082703 /* NotificationView.swift in Sources */,
+				8C31067E280C48DB00ACF5AF /* SymbolModifier.swift in Sources */,
+				8CA8959F28140E2700869DF5 /* RecommendPost.swift in Sources */,
 				3A8EC74027B4FBAB00CAED9F /* PostDataService.swift in Sources */,
 				3A4C074B27F12180007BB380 /* PersonalPostVM.swift in Sources */,
 				3A4C074727F11294007BB380 /* HomeViewVM.swift in Sources */,

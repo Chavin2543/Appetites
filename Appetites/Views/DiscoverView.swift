@@ -9,9 +9,11 @@ import SwiftUI
 
 struct DiscoverView: View {
     var token:String?
+    @State private var isTindering = false
     @State private var isAnimating:Bool = false
     @StateObject var vm = DiscoverViewVM()
     @EnvironmentObject private var userService:UserDataService
+    @StateObject private var discoverService = DiscoverDataService()
     var body: some View {
         GeometryReader { geometry in
             ScrollView {
@@ -36,7 +38,7 @@ struct DiscoverView: View {
                         height: 97,
                     alignment: .leading)
                     DiscoverBadge() {
-                        //MARK: SHOW DISCTIN HERE
+                        isTindering.toggle()
                     }
                         .offset (
                             x: isAnimating ? 0 : geometry.size.width,
@@ -68,6 +70,10 @@ struct DiscoverView: View {
         }
         .fullScreenCover(isPresented: $vm.isSearcing) {
             SearchView()
+        }
+        .fullScreenCover(isPresented: $isTindering) {
+            DiscoverTinderView()
+                .environmentObject(discoverService)
         }
     }
 }

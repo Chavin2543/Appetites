@@ -6,15 +6,16 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct CardView: View, Identifiable {
     //Properties
     let id = UUID()
-    var discovers: DiscoverTinder
+    var discovers: RecommendedPost
     
     
     var body: some View {
-        Image(discovers.imageURL) //INPUT IMAGE
+        WebImage(url: URL(string: (discovers.photoLinksList?.first)!))
             .resizable()
             .scaledToFill()
             .frame(width:304, height:540)
@@ -24,13 +25,13 @@ struct CardView: View, Identifiable {
             .overlay(
                 VStack{
                     HStack(alignment: .center){
-                        Image(systemName: "mappin.and.ellipse").foregroundColor(Color.white)
-                        Text(discovers.restaurantName.uppercased()).foregroundColor(Color.white) //INPUT ZONE
+                        Image(systemName: "person.circle").foregroundColor(Color.white)
+                        Text(discovers.username?.uppercased() ?? "Mo Salah").foregroundColor(Color.white) //INPUT ZONE
                         Spacer()
                     }.padding(.top,20)
                     Spacer()
                     HStack(alignment: .center){
-                        Text(discovers.foodName.uppercased()) //INPUT RESTAURANT
+                        Text("\(discovers.postID)")
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .font(.title)
@@ -40,18 +41,18 @@ struct CardView: View, Identifiable {
                     }
                     HStack(alignment: .center){
                         VStack(alignment: .leading){
-                            switch discovers.foodTag.count {
+                            switch discovers.tagsList?.count {
                             case 0:
-                                Text("Your Meal")
+                                Text("")
                             case 1:
-                                Text(discovers.foodTag[0])
+                                Text(discovers.tagsList![0])
                             case 2:
-                                Text(discovers.foodTag[0])
-                                Text(discovers.foodTag[1])
+                                Text(discovers.tagsList![0])
+                                Text(discovers.tagsList![1])
                             default:
-                                Text(discovers.foodTag[0])
-                                Text(discovers.foodTag[1])
-                                Text(discovers.foodTag[2])
+                                Text(discovers.tagsList![0])
+                                Text(discovers.tagsList![1])
+                                Text(discovers.tagsList![2])
                             }
                         }
                         .font(.headline)
@@ -60,20 +61,12 @@ struct CardView: View, Identifiable {
                         Spacer()
                         Image(systemName: "heart.circle")
                             .foregroundColor(.white)
-                        Text(String(discovers.like))
+                        Text(String(discovers.likeCount ?? 0))
                             .foregroundColor(.white)
                     }.padding(.bottom, 44)
                     
                 }
                     .frame(width:UIScreen.main.bounds.width-120)
             )
-    }
-}
-
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(discovers: DiscoverTinderMenu[1])
-            //.previewLayout(.fixed(width: 375, height: 600))
-        
     }
 }
