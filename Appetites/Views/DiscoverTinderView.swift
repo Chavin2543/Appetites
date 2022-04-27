@@ -11,7 +11,7 @@ struct DiscoverTinderView: View {
     @EnvironmentObject private var userService:UserDataService
     @EnvironmentObject private var postService:PostDataService
     @EnvironmentObject private var discoverService:DiscoverDataService
-    
+    @Environment(\.presentationMode) private var presentationMode
     @State var showAlert: Bool = false
     @State var bookmartIndex:Int = 0
     @State private var isNavigatingBack:Bool = false
@@ -90,12 +90,10 @@ struct DiscoverTinderView: View {
                 HStack {
                     HStack{
                         BackButton() {
-                            isNavigatingBack = true
+                            presentationMode.wrappedValue.dismiss()
                         }
                     }
-                    .fullScreenCover(isPresented: $isNavigatingBack) {
-                        DiscoverView()
-                    }.padding([.leading],32)
+                    .padding([.leading],32)
                     Spacer()
                 }
                 Spacer()
