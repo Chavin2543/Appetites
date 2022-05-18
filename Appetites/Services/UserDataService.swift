@@ -35,6 +35,7 @@ class UserDataService : ObservableObject {
     }
     
     func login(email:String,password:String) {
+        self.isLoading = true
         let body = loginBody(email: email, password: password)
         let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/login")
         let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
@@ -45,6 +46,7 @@ class UserDataService : ObservableObject {
             .receive(on: DispatchQueue.main)
             .tryMap{ try PostHTTPManager().validateHTTPResponse ($0.data, $0.response) }
             .decode(type: Credentials.self, decoder: JSONDecoder())
+        
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case.finished:
@@ -57,39 +59,6 @@ class UserDataService : ObservableObject {
                 self?.setUserInfo()
             })
             .store(in: &cancellables)
-      
-        
-        //TRADITIONAL DATATASK
-//        URLSession.shared.dataTask(with: urlRequest) { [weak self] data, response, error in
-//            guard let data = data else {
-//                print("No data")
-//                return
-//            }
-//
-//            guard error == nil else {
-//                print("Error: \(String(describing: error))")
-//                return
-//            }
-//
-//            guard let response = response as? HTTPURLResponse else {
-//                print("Invalid Response.")
-//                return
-//            }
-//
-//            guard response.statusCode >= 200 && response.statusCode < 300 else {
-//                print("Invalid URLResponse : \(response.statusCode)")
-//                return
-//            }
-//
-//            print("Successfully Logged in")
-//            guard let newUser = try? JSONDecoder().decode(Credentials.self, from:data) else {return}
-//            DispatchQueue.main.async {
-//                self?.token = newUser.token
-//                self?.setUserInfo()
-//                self?.isAuthenticated = true
-//            }
-//        }
-//        .resume()
     }
 
     
@@ -101,6 +70,33 @@ class UserDataService : ObservableObject {
       ] as [String: Any]
     }
     
+    func register(email:String,password:String,username:String) {
+        self.isLoading = true
+        let body = registerBody(email: email, password: password, username: username)
+        let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/register")
+        let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
+        return URLSession.shared
+            .dataTaskPublisher(for: urlRequest)
+            .subscribe(on: DispatchQueue.global(qos: .background))
+            .receive(on: DispatchQueue.main)
+            .tryMap{ try PostHTTPManager().validateHTTPResponse($0.data, $0.response) }
+            .decode(type: Credentials.self, decoder: JSONDecoder())
+            .sink { completion in
+                print("Complete Status : \(completion)")
+            } receiveValue: { [weak self] returnedValue in
+                print("Credentials : \(returnedValue)")
+                self?.token = returnedValue.token
+                self?.setUserInfo()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func registerBody(email:String,password:String,username:String) -> [String: Any] {
+        ["email":email,
+         "password":password,
+         "username":username
+        ] as [String: Any]
+    }
     
     func updateValidation() -> Bool {
         let request = NSFetchRequest<UserInformation>(entityName: "UserInformation")
@@ -304,6 +300,7 @@ class UserDataService : ObservableObject {
                     self?.user.following = returnedValue.followingCount
                     self?.user.followingDetails = returnedValue.followings
                     self?.isAuthenticated = true
+                    self?.isLoading = false
                 })
     }
     

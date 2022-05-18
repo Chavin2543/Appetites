@@ -78,6 +78,9 @@ struct HomeView: View {
                 .frame(maxWidth:.infinity)
             .background(Color("NoirBG"))
             .navigationBarHidden(true)
+            .onAppear {
+                vm.getPosts(token: userService.token, limit:"1000", offset: "0")
+            }
             }
         }
     }

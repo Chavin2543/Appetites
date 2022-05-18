@@ -9,70 +9,133 @@ import SwiftUI
 
 struct CustomDatePicker: View {
     
+    @State private var isLoading:Bool = false
+    @EnvironmentObject private var eventService:EventDataService
+    @EnvironmentObject private var userService:UserDataService
     @Binding var currentDate:Date
+    @State private var actualMonth:Int = 0
     @State private var currentMonth:Int = 0
+    @State var event: GetEventResponse = GetEventResponse(events: [])
+    @State var eventDateArray:[Int] = []
     
     var body: some View {
-        VStack (spacing:36) {
-            
-            let days:[String] = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
-            
-            HStack (spacing:20) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(extraDate()[0])
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                    Text(extraDate()[1])
-                        .font(.title.bold())
-                        .foregroundColor(Color("NoirGreen"))
-                }
+        ZStack {
+            VStack (spacing:36) {
                 
-                Spacer(minLength: 0)
+                let days:[String] = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
                 
-                Button {
-                    withAnimation {
-                        currentMonth -= 1
+                HStack (spacing:20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(extraDate()[0])
+                            .font(.caption)
+                            .fontWeight(.semibold)
+                        Text(extraDate()[1])
+                            .font(.title.bold())
+                            .foregroundColor(Color("NoirGreen"))
                     }
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title2)
-                        .foregroundColor(Color("NoirGreen"))
-                }
-                
-                Button {
-                    withAnimation {
-                        currentMonth += 1
+                    
+                    Spacer(minLength: 0)
+                    
+                    Button {
+                        withAnimation {
+                            isLoading.toggle()
+                            eventDateArray = []
+                            currentMonth -= 1
+                            actualMonth -= 1
+                            print("CONTINUE ACTUAL \(actualMonth)")
+                            eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                eventService.event.events.forEach { event in
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "dd"
+                                    eventDateArray.append(Int(dateFormatter.string(from: event.extractedDate)) ?? 0)
+                                }
+                                isLoading.toggle()
+                            }
+                            print("date array = \(eventDateArray)")
+                        }
+                    } label: {
+                        Image(systemName: "chevron.left")
+                            .font(.title2)
+                            .foregroundColor(Color("NoirGreen"))
                     }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.title2)
-                        .foregroundColor(Color("NoirGreen"))
-                }
+                    
+                    Button {
+                        withAnimation {
+                            isLoading.toggle()
+                            eventDateArray = []
+                            currentMonth += 1
+                            actualMonth += 1
+                            print("CONTINUE ACTUAL \(actualMonth)")
+                            eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
+                            let formatter = DateFormatter()
+                            formatter.dateFormat = "MM"
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                eventService.event.events.forEach { event in
+                                    let dateFormatter = DateFormatter()
+                                    dateFormatter.dateFormat = "dd"
+                                    eventDateArray.append(Int(dateFormatter.string(from: event.extractedDate)) ?? 0)
+                                }
+                                isLoading.toggle()
+                            }
+                            print("date array = \(eventDateArray)")
+                        }
+                    } label: {
+                        Image(systemName: "chevron.right")
+                            .font(.title2)
+                            .foregroundColor(Color("NoirGreen"))
+                    }
 
+                    
+                }
+                .padding()
                 
-            }
-            .padding()
-            
-            HStack(spacing:0) {
-                ForEach(days,id: \.self) { day in
-                    Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
-                        .frame(maxWidth:.infinity)
+                HStack(spacing:0) {
+                    ForEach(days,id: \.self) { day in
+                        Text(day)
+                            .font(.callout)
+                            .fontWeight(.semibold)
+                            .frame(maxWidth:.infinity)
+                    }
                 }
-            }
-            let columns = Array(repeating: GridItem(.flexible()), count: 7)
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(extractDate()) { value in
-                   CardView(value: value)
+                let columns = Array(repeating: GridItem(.flexible()), count: 7)
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(extractDate()) { value in
+                       CardView(value: value)
+                    }
                 }
+                Spacer()
             }
-            Spacer()
+            .onAppear(perform: {
+                isLoading.toggle()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MM"
+                actualMonth = Int(formatter.string(from: Date())) ?? 0
+                eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    eventService.event.events.forEach { event in
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "dd"
+                        eventDateArray.append(Int(dateFormatter.string(from: event.extractedDate)) ?? 0)
+                    }
+                    isLoading.toggle()
+                }
+                print("date array = \(eventDateArray)")
+                
+            })
+            .foregroundColor(.white)
+            .onChange(of:currentMonth) { newValue in
+                currentDate = getCurrentMonth()
+            }
+            if isLoading {
+                ProgressView("Loading")
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(Color("NoirGreen"))
+                    .cornerRadius(10)
+            }
         }
-        .foregroundColor(.white)
-        .onChange(of:currentMonth) { newValue in
-            currentDate = getCurrentMonth()
-        }
+        
     }
     
     @ViewBuilder
@@ -81,6 +144,8 @@ struct CustomDatePicker: View {
             if value.day != -1 {
                 Text("\(value.day)")
                     .font(.title3.bold())
+                    .background(eventDateArray.contains(where: { $0 == value.day }) ? Color("NoirRed") : .clear)
+                    .cornerRadius(eventDateArray.contains(where: { $0 == value.day }) ? 10 : 0)
             }
         }
         .padding(.vertical,8)
@@ -97,7 +162,6 @@ struct CustomDatePicker: View {
         let calendar = Calendar.current
         
         let currentMonth = getCurrentMonth()
-        print(currentMonth)
         var days = currentMonth.getAllDates().compactMap { date -> DateValue in
             let day = calendar.component(.day, from: date)
             return DateValue(day: day, date: date)
@@ -124,7 +188,7 @@ struct CustomDatePicker: View {
 
 struct CustomDatePicker_Previews: PreviewProvider {
     static var previews: some View {
-        CustomDatePicker(currentDate: .constant(Date())).background(.black)
+        CustomDatePicker(currentDate: .constant(Date()), event: GetEventResponse(events: [])).background(.black)
     }
 }
 

@@ -12,7 +12,6 @@ class HomeViewVM:ObservableObject {
     @Published var feedPosts:GetPost = GetPost(email: "", token: "", expiresIn: "", postCount: 0, limit: 0, offset: 0, posts: [])
     
     init() {
-        getPosts(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImxhbGl0cmF0YW5hQGdtYWlsLmNvbSIsImV4cCI6MTY4MDE1NjQxNX0.jMKJIzjt06_97Jer8Sy2cT7ixyXJTvzqU3pIepMJeTQ", limit: "20", offset: "0")
     }
     
     func getPosts(token:String,limit:String,offset:String) {

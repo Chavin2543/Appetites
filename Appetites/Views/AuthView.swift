@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+public enum LoginMode {
+    case login
+    case register
+}
+
 struct AuthView: View {
     
     @StateObject var vm:AuthViewVM
     @State private var isAnimating:Bool = false
-    
+    @State private var mode:LoginMode = .login
     @State private var email:String = ""
     @State private var password:String = ""
+    @State private var username:String = ""
     
     @Environment(\.presentationMode) private var presentationMode
     @EnvironmentObject var userService:UserDataService
@@ -32,12 +38,16 @@ struct AuthView: View {
                             .frame(width: geometry.size.width-64, height: 97, alignment: .leading)
                         HStack (spacing:112) {
                             Button {
-                                print("Login")
+                                withAnimation {
+                                    mode = .login
+                                }
                             } label: {
                                 Text("Login")
                             }
                             Button {
-                                print("Signup")
+                                withAnimation {
+                                    mode = .register
+                                }
                             } label: {
                                 Text("Signup")
                             }
@@ -50,21 +60,38 @@ struct AuthView: View {
                                 .preferredColorScheme(.dark)
                                 .textInputAutocapitalization(.never)
                             Divider()
-                            SecureField("Username", text: $password)
+                            if mode == .register {
+                                TextField("Username", text: $username)
+                                    .frame(width: geometry.size.width-64, height: 44, alignment: .center)
+                                    .preferredColorScheme(.dark)
+                                    .textInputAutocapitalization(.never)
+                                Divider()
+                                    .foregroundColor(username.isEmpty ? .red : .gray)
+                            }
+                            SecureField("Password", text: $password)
                                 .frame(width: geometry.size.width-64, height: 44, alignment: .center)
                                 .textInputAutocapitalization(.never)
                             Divider()
+                            
                         }
-                        .frame(height:200)
+                        .frame(height:260)
                         LongButton(title: .constant("Login"), color: .constant("NoirGreen")) {
-                            userService.login(email: email, password: password)
+                            if mode == .login {
+                                userService.login(email: email, password: password)
+                            } else {
+                                userService.register(email: email, password: password, username: username)
+                            }
                         }
                             .disabled(userService.isLoading)
                             .frame(width:geometry.size.width-64)
                     }
                     if userService.isLoading {
                         ZStack {
-                            ProgressView()
+                            ProgressView("Loading")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color("NoirGreen"))
+                                .cornerRadius(10)
                         }
                     }
                 }

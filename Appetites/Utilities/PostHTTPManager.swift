@@ -32,6 +32,7 @@ class PostHTTPManager {
        guard let httpResponse = response as? HTTPURLResponse else {
          throw NetworkError.responseinvalid
        }
+         print(httpResponse.statusCode)
        guard (200..<300).contains(httpResponse.statusCode) else {
          throw networkRequestError(from: httpResponse.statusCode)
        }

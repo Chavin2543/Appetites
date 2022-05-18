@@ -21,8 +21,11 @@
 
 import Foundation
 
-struct FollowerDetails:Codable {
+struct FollowerDetails:Codable, Identifiable {
     var followerEmail:String
     var followDate:String
     var followerUsername:String
+    var id:String {
+        followerEmail
+    }
 }
