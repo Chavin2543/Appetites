@@ -50,7 +50,7 @@ struct HomeView: View {
                                 NavigationLink(destination: PostDetailsView(post: post)) {
                                     Post(likeButtonAction: {
                                         vm.likePosts(token: userService.token, postID: "\(post.postID)")
-                                    }, commentButtonAction: {
+                                    }, unlikeButtonAction: {
                                         vm.unlikePosts(token: userService.token, postID: "\(post.postID)")
                                     },post: post,profilePicURL:userService.user.profilePictureLink )
                                         .padding(.horizontal,16)

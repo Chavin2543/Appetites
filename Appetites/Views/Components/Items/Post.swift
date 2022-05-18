@@ -12,7 +12,7 @@ struct Post: View {
     
     @State private var messageText:String = ""
     var likeButtonAction: () -> Void
-    var commentButtonAction: () -> Void
+    var unlikeButtonAction: () -> Void
     @State var post:PostDetails
     var profilePicURL:String?
     var body: some View {
@@ -60,19 +60,19 @@ struct Post: View {
                     HStack(spacing:24) {
                         HStack {
                             Button {
-                                if !post.isLiked! {
-                                    likeButtonAction()
+                                if post.isLiked! {
+                                    unlikeButtonAction()
                                     post.likeCount! -= 1
                                     post.isLiked?.toggle()
                                 } else {
-                                    commentButtonAction()
+                                    likeButtonAction()
                                     post.likeCount! += 1
                                     post.isLiked?.toggle()
                                 }
                             } label: {
                                 HStack {
                                     Image(systemName: "heart.fill")
-                                        .foregroundColor(!(post.isLiked)! ? .red : Color("NoirGrayL"))
+                                        .foregroundColor((post.isLiked)! ? .red : Color("NoirGrayL"))
     
                                 }
                             }
@@ -80,7 +80,7 @@ struct Post: View {
                         
                         HStack {
                             Button {
-                                commentButtonAction()
+                                print("comment")
                             } label: {
                                 HStack {
                                     Image(systemName: "message.fill")
@@ -141,7 +141,7 @@ struct Post_Previews: PreviewProvider {
     static var previews: some View {
         Post(likeButtonAction: {
             print("Test")
-        }, commentButtonAction: {
+        }, unlikeButtonAction: {
             print("Test")
         }, post: PostDetails(postID: 0))
 
