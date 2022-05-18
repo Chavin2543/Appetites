@@ -99,6 +99,7 @@ struct CalendarView: View {
                                         HStack {
                                             WebImage(url: URL(string: member.profilePictureLink ?? "https://images.pexels.com/photos/8059137/pexels-photo-8059137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"))
                                                 .resizable()
+                                                .scaledToFill()
                                                 .frame(width: 30, height: 30, alignment: .center)
                                                 .cornerRadius(30)
                                         }

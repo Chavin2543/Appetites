@@ -53,6 +53,7 @@ class UserDataService : ObservableObject {
                     print("Login Completed")
                 case.failure(let error):
                     print("Login Failed: \(error)")
+                    self.isLoading.toggle()
                 }
             }, receiveValue: { [weak self] returnedValue in
                 self?.token = returnedValue.token

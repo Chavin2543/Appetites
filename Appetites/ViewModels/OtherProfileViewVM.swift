@@ -30,6 +30,7 @@ class OtherProfileViewVM : ObservableObject {
             .decode(type: Followers.self, decoder: JSONDecoder())
             .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
                 self?.user.follower = returnedValue.followerCount
+                self?.user.followerDetails = returnedValue.followers
                 print(returnedValue.followerCount)
                 self?.getFollowing(token: token, email: email)
             })
@@ -41,6 +42,7 @@ class OtherProfileViewVM : ObservableObject {
             .decode(type: Followings.self, decoder: JSONDecoder())
             .sink(receiveCompletion: GetHTTPManager.handleCompletion, receiveValue: { [weak self] (returnedValue) in
                 self?.user.following = returnedValue.followingCount
+                self?.user.followingDetails = returnedValue.followings
                 print(returnedValue.followingCount)
                 self?.isFollow(token: token, email: email)
             })

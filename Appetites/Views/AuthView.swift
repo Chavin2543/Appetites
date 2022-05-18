@@ -78,8 +78,14 @@ struct AuthView: View {
                         LongButton(title: .constant("Login"), color: .constant("NoirGreen")) {
                             if mode == .login {
                                 userService.login(email: email, password: password)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             } else {
                                 userService.register(email: email, password: password, username: username)
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             }
                         }
                             .disabled(userService.isLoading)

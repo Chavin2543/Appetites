@@ -13,9 +13,11 @@ struct OtherProfileView: View {
     //MARK: - Properties
     var items: [GridItem] = Array(repeating: .init(.flexible()), count: 3)
     @Environment(\.presentationMode) private var presentationMode
+    @State private var isViewingFollower:Bool = false
     @EnvironmentObject private var userService:UserDataService
     @StateObject private var vm = OtherProfileViewVM()
     @State var otherUser:SearchResultDetails
+    @State private var mode:FollowMode = .follower
     
     
     var body: some View {
@@ -34,20 +36,13 @@ struct OtherProfileView: View {
 
                         Text(otherUser.username)
                             .font(.title.bold())
-                        Button {
-                            print("Test Edit")
-                        } label: {
-                            Image(systemName: "pencil")
-                                .font(.title.bold())
-                                .foregroundStyle(Color("NoirYellow"))
-                        }
                         Spacer()
                     }
                     .foregroundColor(.white)
                     .frame (height: 97, alignment: .leading)
                     
                     ProfileBadge(buttonAction: {
-                        print("Enter")
+                        isViewingFollower.toggle()
                     }, loading: $vm.isLoading, profilePic:$otherUser.profilePictureLink, follower: $vm.user.follower, following: $vm.user.following)
                     
                     if userService.user.username != vm.dataFromSearch.username {
@@ -66,10 +61,10 @@ struct OtherProfileView: View {
                         .frame(height: 144, alignment: .center)
                         .cornerRadius(24)
                     
-                    CalendarBadge(buttonAction: {
-                            print("Calendar")
-                    })
-                    
+//                    CalendarBadge(buttonAction: {
+//                            print("Calendar")
+//                    })
+//                    
                     //MARK: - Post Grid
                     
                     LazyVGrid(columns: items, alignment: .center, spacing: 4) {
@@ -94,6 +89,97 @@ struct OtherProfileView: View {
                     .ignoresSafeArea()
             )
             //MARK: - Lifecycle
+            .sheet(isPresented: $isViewingFollower, content: {
+                ZStack {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Button {
+                                withAnimation {
+                                    mode = .follower
+                                }
+                            } label: {
+                                Text("Follower")
+                                    .fontWeight(mode == .follower ? .bold : .none)
+                                    .font(.body)
+                                    .foregroundColor(mode == .follower ? Color("NoirGreen") : .white)
+                            }
+                            Spacer()
+                            Button {
+                                withAnimation {
+                                    mode = .following
+                                }
+                            } label: {
+                                Text("Followings")
+                                    .fontWeight(mode == .following ? .bold : .none)
+                                    .font(.body)
+                                    .foregroundColor(mode == .following ? Color("NoirGreen") : .white)
+                            }
+                            Spacer()
+                        }
+                        .padding(.top,40)
+                        if mode == .follower {
+                            VStack (spacing:20) {
+                                ForEach(vm.user.followerDetails ?? []) { follower in
+                                    HStack {
+                                        VStack {
+                                            HStack {
+                                                Text(follower.followerUsername)
+                                                    .font(.body.bold())
+                                                    .foregroundColor(Color("NoirGreen"))
+                                                Spacer()
+                                            }
+                                            HStack {
+                                                Text(follower.followerEmail)
+                                                    .foregroundColor(.white)
+                                                Spacer()
+                                            }
+                                        }
+                                        Spacer()
+                                        WebImage(url: URL(string: "https://images.pexels.com/photos/8059137/pexels-photo-8059137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"))
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 40, height: 40, alignment: .center)
+                                            .cornerRadius(40)
+                                    }
+                                }
+                            }
+                            .padding(.top,30)
+                        } else {
+                            VStack (spacing:20) {
+                                ForEach(vm.user.followingDetails ?? []) { follower in
+                                    HStack {
+                                        VStack {
+                                            HStack {
+                                                Text(follower.followedUsername)
+                                                    .font(.body.bold())
+                                                    .foregroundColor(Color("NoirGreen"))
+                                                Spacer()
+                                            }
+                                            HStack {
+                                                Text(follower.followedEmail)
+                                                    .foregroundColor(.white)
+                                                Spacer()
+                                            }
+                                        }
+                                        Spacer()
+                                        WebImage(url: URL(string: "https://images.pexels.com/photos/8059137/pexels-photo-8059137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"))
+                                            .resizable()
+                                            .scaledToFill()
+                                            .frame(width: 40, height: 40, alignment: .center)
+                                            .cornerRadius(40)
+                                    }
+                                }
+                            }
+                            .padding(.top,30)
+                        }
+                        Spacer()
+                    }
+                    .padding(.horizontal,32)
+                }
+                .frame(maxWidth:.infinity,maxHeight: .infinity)
+                .background(Color("NoirBG"))
+            })
             .onAppear {
                 vm.getFollower(token: userService.token, email: otherUser.email)
                 vm.getUserPosts(token: userService.token, otherEmail: otherUser.email, limit: "100", offset: "0")
