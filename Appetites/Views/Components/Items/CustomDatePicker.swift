@@ -44,7 +44,7 @@ struct CustomDatePicker: View {
                             actualMonth -= 1
                             print("CONTINUE ACTUAL \(actualMonth)")
                             eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 eventService.event.events.forEach { event in
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "dd"
@@ -70,7 +70,7 @@ struct CustomDatePicker: View {
                             eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
                             let formatter = DateFormatter()
                             formatter.dateFormat = "MM"
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                 eventService.event.events.forEach { event in
                                     let dateFormatter = DateFormatter()
                                     dateFormatter.dateFormat = "dd"
@@ -112,7 +112,7 @@ struct CustomDatePicker: View {
                 formatter.dateFormat = "MM"
                 actualMonth = Int(formatter.string(from: Date())) ?? 0
                 eventService.getEvent(token: userService.token, month: "\(actualMonth)", year: "2022")
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                     eventService.event.events.forEach { event in
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "dd"
