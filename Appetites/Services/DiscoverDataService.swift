@@ -15,7 +15,6 @@ class DiscoverDataService : ObservableObject {
     var cancellables = Set<AnyCancellable
     >()
     init() {
-        retrieveRecommendedPost(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImxhbGl0cmF0YW5hQGdtYWlsLmNvbSIsImV4cCI6MTY4NTMyNjgzMX0.TSQ-SLV_Kos844sdyVoVJwfJtSR3T6uQDS81nim9Rkk")
     }
     
     func retrieveRecommendedPost(token: String) {

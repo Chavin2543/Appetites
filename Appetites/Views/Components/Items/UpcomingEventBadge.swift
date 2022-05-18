@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct UpcomingEventBadge: View {
-    @State var latestEvent:EventDetail
+    @Binding var latestEvent:EventDetail
     var body: some View {
         GeometryReader { geometry in
             HStack {
@@ -44,6 +44,6 @@ struct UpcomingEventBadge: View {
 
 struct UpcomingEventBadge_Previews: PreviewProvider {
     static var previews: some View {
-        UpcomingEventBadge(latestEvent: EventDetail(eventID: 0, eventLocation: "", eventTitle: "", eventDescription: "", eventDate: "", userEmail: "", isCreator: false, eventMembers: []))
+        UpcomingEventBadge(latestEvent: .constant(EventDetail(eventID: 0, eventLocation: "", eventTitle: "", eventDescription: "", eventDate: "", userEmail: "", isCreator: false, eventMembers: [])))
     }
 }

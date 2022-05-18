@@ -163,6 +163,9 @@ struct DiscoverTinderView: View {
                             ).transition(self.cardRemovalTransition)
                     }
                 }
+                .onAppear(perform: {
+                    discoverService.retrieveRecommendedPost(token: userService.token)
+                })
                 .padding(.horizontal)
                 
                 Spacer()

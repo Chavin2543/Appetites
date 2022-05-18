@@ -9,6 +9,7 @@ import Foundation
 
 struct DiscoverTinder : Codable, Identifiable {
     var id : Int
+ 
     var restaurantName: String
     var foodName: String
     var imageURL: String

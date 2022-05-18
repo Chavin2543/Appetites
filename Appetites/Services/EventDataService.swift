@@ -16,7 +16,7 @@ struct GetEventResponse:Codable {
     var events: [EventDetail]
 }
 
-struct EventDetail:Codable {
+struct EventDetail:Codable,Identifiable {
     var eventID: Int
     var eventLocation:String
     var eventTitle:String
@@ -35,12 +35,18 @@ struct EventDetail:Codable {
             return Date()
         }
     }
+    var id:Int {
+        eventID
+    }
 }
 
-struct EventMember:Codable {
+struct EventMember:Codable,Identifiable {
     var email:String
     var username:String
     var profilePictureLink:String?
+    var id:String{
+        email
+    }
 }
 
 class EventDataService:ObservableObject {

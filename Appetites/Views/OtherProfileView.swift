@@ -62,7 +62,7 @@ struct OtherProfileView: View {
                     
                     
                     //MARK: - Hero Section
-                    UpcomingEventBadge(latestEvent: EventDetail(eventID: 0, eventLocation: "Under Construction", eventTitle: "Going to Dinner", eventDescription: "At Sathorn", eventDate: "20 May 2021", userEmail: "rungallday@email.com", isCreator: false, eventMembers: []))
+                    UpcomingEventBadge(latestEvent: .constant(EventDetail(eventID: 0, eventLocation: "Under Construction", eventTitle: "Going to Dinner", eventDescription: "At Sathorn", eventDate: "20 May 2021", userEmail: "rungallday@email.com", isCreator: false, eventMembers: [])))
                         .frame(height: 144, alignment: .center)
                         .cornerRadius(24)
                     
