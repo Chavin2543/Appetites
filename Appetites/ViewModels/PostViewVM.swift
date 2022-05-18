@@ -19,7 +19,7 @@ class PostViewVM : ObservableObject {
         print("Init Post")
     }
     
-    func uploadPostPhoto(image:UIImage?,token:String,caption:String,foodTags:[String]) {
+    func uploadPostPhoto(image:UIImage?,token:String,caption:String,foodTags:[String],postLocation:String) {
         let filename = UUID().uuidString
         let ref = FirebaseManager.shared.storage.reference(withPath: filename)
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else {return}
@@ -35,17 +35,17 @@ class PostViewVM : ObservableObject {
                 }
                 print("Upload success url : \(url?.absoluteString ?? "")")
                 guard let targetUrl = url?.absoluteString else {return}
-                self.createPost(token: token, url: targetUrl, caption: caption, foodTags: foodTags)
+                self.createPost(token: token, url: targetUrl, caption: caption, foodTags: foodTags, postLocation: postLocation)
             }
         }
         
     }
     
-    func createPost(token:String,url:String,caption:String,foodTags:[String]) {
-        let body = setPostBody(url: url, caption: caption, foodTags: foodTags)
+    func createPost(token:String,url:String,caption:String,foodTags:[String], postLocation:String) {
+        let body = setPostBody(url: url, caption: caption, foodTags: foodTags, postLocation: postLocation)
         let url = PostHTTPManager().urlSetup(url: "https://appetite-backend-owen.herokuapp.com/createpost/token=\(token)")
         let urlRequest = PostHTTPManager().postRequestSetup(url: url, body: body)
-        
+        print(body)
         return URLSession.shared
             .dataTaskPublisher(for: urlRequest)
             .subscribe(on: DispatchQueue.global(qos: .background))
@@ -66,11 +66,12 @@ class PostViewVM : ObservableObject {
             .store(in: &cancellables)
     }
     
-    func setPostBody(url:String,caption:String,foodTags:[String]) -> [String: Any] {
+    func setPostBody(url:String,caption:String,foodTags:[String],postLocation:String) -> [String: Any] {
       [
         "tagsList" : foodTags,
         "photoLinksList": [url],
-        "postCaption" : caption
+        "postCaption" : caption,
+        "postLocation": postLocation
       ] as [String: Any]
     }
     

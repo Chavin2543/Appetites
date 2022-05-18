@@ -6,37 +6,30 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UpcomingEventBadge: View {
+    @State var latestEvent:EventDetail
     var body: some View {
         GeometryReader { geometry in
             HStack {
                 HStack (spacing:20) {
-                    RoundedRectangle(cornerRadius: 20)
-                        .foregroundColor(.white)
+                    WebImage(url: URL(string: "https://images.pexels.com/photos/370984/pexels-photo-370984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"))
+                        .resizable()
+                        .scaledToFill()
                         .frame(width: 80, height: 80, alignment: .center)
+                        .cornerRadius(40)
                     VStack (alignment:.leading,spacing:8) {
                         HStack {
                             Image(systemName: "circle.fill")
                                 .font(.caption)
                                 .foregroundColor(Color("NoirGreen"))
-                            Text("Upcoming Event")
+                            Text("\(latestEvent.eventTitle)")
                                 .font(.caption)
                             .fontWeight(.light)
                         }
-                        Text("19 Nov 2021")
+                        Text("\(latestEvent.eventDate)")
                             .font(.subheadline.bold())
-                        Button {
-                            print("Action")
-                        } label: {
-                            Text("Open")
-                                .font(.caption.bold())
-                                .foregroundColor(.white)
-                                .frame(width: 80, height: 28, alignment: .center)
-                                .background(Color("NoirGreen"))
-                                .cornerRadius(20)
-                        }
-
                     }
                     .foregroundColor(.white)
                     Spacer()
@@ -51,6 +44,6 @@ struct UpcomingEventBadge: View {
 
 struct UpcomingEventBadge_Previews: PreviewProvider {
     static var previews: some View {
-        UpcomingEventBadge()
+        UpcomingEventBadge(latestEvent: EventDetail(eventID: 0, eventLocation: "", eventTitle: "", eventDescription: "", eventDate: "", userEmail: "", isCreator: false, eventMembers: []))
     }
 }

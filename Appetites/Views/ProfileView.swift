@@ -57,7 +57,7 @@ struct ProfileView: View {
                     
                     VStack (spacing:34){
                         VStack {
-                            UpcomingEventBadge()
+                            UpcomingEventBadge(latestEvent: vm.event.events.first ?? EventDetail(eventID: 0, eventLocation: "UnderConstruction", eventTitle: "No Upcoming Event", eventDescription: "", eventDate: "", userEmail: "temo", isCreator: false, eventMembers: []))
                                 .frame(height: 144, alignment: .center)
                                 .cornerRadius(24)
                             .offset(x: isAnimating ? 0 : -geometry.size.width, y: 0)
@@ -103,6 +103,7 @@ struct ProfileView: View {
         .onAppear {
             withAnimation(.spring(response: 0.9, dampingFraction: 0.9, blendDuration: 0.4)) {
                 vm.getPersonalPost(token: userService.token)
+                vm.getEvent(token: userService.token, month: "5", year: "2022")
                 isAnimating.toggle()
                 userService.getUser()
             }

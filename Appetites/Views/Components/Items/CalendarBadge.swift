@@ -28,13 +28,9 @@ struct CalendarBadge: View {
                             Capsule()
                                 .frame(width: 59, height: 24)
                             HStack (spacing:2) {
-                                Text("2 New")
-                                    .foregroundColor(.white)
-                                    .fontWeight(.semibold)
-                                    .font(.system(size:11))
                                 Image(systemName: "chevron.right")
                                     .foregroundColor(.white)
-                                    .font(.system(size:10))
+                                    .font(.system(size:10).bold())
                             }
                             
                         }

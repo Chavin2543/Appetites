@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import Combine
 
 class ProfileViewVM: ObservableObject {
     @Published var inSettings:Bool = false
@@ -14,10 +14,31 @@ class ProfileViewVM: ObservableObject {
     @Published var inPost:Bool = false
     @Published var isEditingProfile:Bool = false
     @Published var personalPost:GetPost = GetPost(email: "", token: "", expiresIn: "", postCount: 0, limit: 0, offset: 0, posts: [])
-    
+    @Published var event:GetEventResponse = GetEventResponse(events: [])
+    var userSubscription: AnyCancellable?
     init() {
     }
 
+    func getEvent(token:String,month:String,year:String) {
+        print(token)
+        guard let url = URL(string: "https://appetite-backend-owen.herokuapp.com/getevents/token=\(token)/month=\(month)/year=\(year)") else {return}
+        print(url)
+        userSubscription = GetHTTPManager.download(url: url)
+            .decode(type: GetEventResponse.self
+                    , decoder: JSONDecoder())
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    print("SUCCESS")
+                case.failure(let error):
+                    print(error)
+                }
+            }, receiveValue: { returnedValues in
+                self.event = returnedValues
+                print(self.event)
+            })
+    }
+    
     func getPersonalPost(token:String) {
         guard let url = URL(string:"https://appetite-backend-owen.herokuapp.com/getposts/token=\(token)/limit=20/offset=0") else {return}
         URLSession.shared.dataTask(with: url) { data, response, error in

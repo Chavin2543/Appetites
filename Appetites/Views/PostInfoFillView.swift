@@ -10,6 +10,7 @@ import SwiftUI
 struct PostInfoFillView: View {
     
     //MARK: - Properties
+    @Environment(\.presentationMode) var presentationMode
     var items: [GridItem] = Array(repeating: .init(.fixed(100)), count: 3)
     var image:UIImage?
     var token:String
@@ -23,7 +24,6 @@ struct PostInfoFillView: View {
     @State private var selectedFoodTag:[String] = []
     @State private var caption:String = ""
     @State private var location:String = ""
-    @State private var tagList:[String] = ["TagList1","TagList2","TagList3","TagList4","TagList5","TagList6"]
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -32,7 +32,7 @@ struct PostInfoFillView: View {
                 
                 HStack {
                     Button {
-                        print("back")
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Image(systemName: "chevron.left")
                             .resizable()
@@ -42,97 +42,103 @@ struct PostInfoFillView: View {
                             .padding(.horizontal,16)
                     }
                     .padding(.leading,32)
-
+                    
                     Text("Fill Information")
                         .font(.title)
                         .fontWeight(.bold)
-                    .foregroundColor(.white)
+                        .foregroundColor(.white)
                     Spacer()
                 }
+                .padding(.top,30)
                 
                 //MARK: - HERO
-//
-//                    Image(uiImage: image!)
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(width: geometry.size.width, height: geometry.size.height * 0.3, alignment: .center)
-//                    .clipped()
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("Caption")
-                            .font(.body)
-                            .fontWeight(.light)
-                            .foregroundColor(.white)
-                            .padding(.leading,32)
-                        HStack {
-                            TextEditor(text: $caption)
-                                .frame(height:140)
-                                .cornerRadius(20)
-                                .padding()
-                                .font(.caption)
-                                .frame(width:geometry.size.width)
-                                .foregroundColor(.black)
-                                .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 2)
-                        }
-                        Text("Location")
-                            .font(.body)
-                            .fontWeight(.light)
-                            .foregroundColor(.white)
-                            .padding(.leading,32)
+                //
+                //                    Image(uiImage: image!)
+                //                    .resizable()
+                //                    .scaledToFill()
+                //                    .frame(width: geometry.size.width, height: geometry.size.height * 0.3, alignment: .center)
+                //                    .clipped()
+                VStack (alignment: .leading, spacing: 30) {
+                    Group {
+                        TextField("Caption", text: $caption)
+                        Divider()
                         TextField("Location", text: $location)
-                            .font(.caption)
+                        Divider()
+                        Text("Select Your FoodTag")
+                            .font(.body.bold())
+                        if selectedFoodTag.count < 3 {
+                            Picker("Pick your food tag", selection: $tag1.onChange(tagChange)) {
+                                ForEach(foodTags, id: \.self) {
+                                    Text($0)
+                                }
+                            }
                             .foregroundColor(.white)
-                            .padding(.leading,32)
+                            .frame(width: 200, height: 20, alignment: .center)
+                            .padding(3)
+                            .background(.white)
+                            .cornerRadius(24)
+                        }
+                        Divider()
                     }
+                }
+                .preferredColorScheme(.dark)
+                .padding(.horizontal,32)
+                .padding(.vertical,32)
                 
                 
-                    VStack (alignment:.leading) {
-                        HStack {
-                            Picker("Pick your food tag", selection: $tag1) {
-                                        ForEach(foodTags,id:\.self) { tag in
-                                            Text(tag)
-                                                .foregroundColor(.black)
+                VStack (alignment:.leading) {
+                    HStack {
+                        VStack (spacing: 30) {
+                            HStack (spacing:10) {
+                                ForEach(selectedFoodTag, id:\.self) { tag in
+                                    HStack {
+                                        Text(tag)
+                                            .frame(width: 45, height: 5, alignment: .center)
+                                        Button {
+                                            let index = selectedFoodTag.firstIndex(of: tag) ?? 0
+                                            selectedFoodTag.remove(at: index)
+                                        } label: {
+                                            Image(systemName: "xmark")
+                                                .foregroundColor(.white)
                                         }
                                     }
-                            .pickerStyle(.menu)
-                            .frame(width: geometry.size.width * 0.45)
-                            .background(.white)
-                            .cornerRadius(20)
-                            Picker("Pick your food tag", selection: $tag2) {
-                                        ForEach(foodTags,id:\.self) { tag in
-                                            Text(tag)
-                                                .foregroundColor(.black)
-                                        }
-                                    }
-                            .pickerStyle(.menu)
-                            .frame(width: geometry.size.width * 0.45)
-                            .background(.white)
-                            .cornerRadius(20)
+                                    .padding()
+                                    .foregroundColor(.white)
+                                    .background(Color("NoirGreen"))
+                                    .cornerRadius(25)
+                                    .font(.caption)
+                                    
+                                }
+                            }
                             Spacer()
                         }
+                        Spacer()
                     }
-                    .frame(width:geometry.size.width - 64)
-                    Spacer()
+                }
+                .frame(width:geometry.size.width - 64)
+                Spacer()
                 
                 //MARK: - Footer
-                    LongButton(title: .constant("Post"), color: .constant("NoirGreen")) {
-                        if tag1 != "" {
-                            selectedFoodTag.append(tag1)
+                LongButton(title: .constant("Post"), color: .constant("NoirGreen")) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                        vm.uploadPostPhoto(image: image, token: token, caption: caption, foodTags:selectedFoodTag, postLocation: location)
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            presentationMode.wrappedValue.dismiss()
                         }
-                        if tag2 != "" {
-                            selectedFoodTag.append(tag2)
-                        }
-                        if tag3 != "" {
-                            selectedFoodTag.append(tag3)
-                        }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                            vm.uploadPostPhoto(image: image, token: token, caption: caption, foodTags:selectedFoodTag)
-                        }
-                            }
-                            .frame(width:geometry.size.width - 64)
+                    }
                 }
+                .frame(width:geometry.size.width - 64)
+            }
             .frame(maxWidth:.infinity,maxHeight: .infinity)
             .background(Color("NoirBG"))
         }
+    }
+    
+    func tagChange(_ tag:String) {
+        selectedFoodTag.append(tag)
+        print(selectedFoodTag)
+        let index = foodTags.firstIndex(of: tag) ?? 0
+        foodTags.remove(at: index)
     }
 }
 
@@ -142,3 +148,13 @@ struct PostInfoFillView: View {
 //        PostInfoFillView(token: "", vm: vm)
 //    }
 //}
+extension Binding {
+    func onChange(_ handler: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { selection in
+                self.wrappedValue = selection
+                handler(selection)
+            })
+    }
+}
