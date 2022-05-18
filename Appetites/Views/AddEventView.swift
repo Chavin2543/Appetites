@@ -62,6 +62,7 @@ struct AddEventView: View {
                 EventInvitationPopupView(buttonAction: {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+                    dateFormatter.calendar = NSCalendar(identifier: .gregorian) as Calendar?
                     let dateString = dateFormatter.string(from: currentDate)
                     eventService.createEvent(eventTitle: eventTitle, eventLocation: eventLocation, eventDescription: eventDescription, eventDate: dateString, eventMembersEmail: invitedPeople, token: userService.token)
                 }, followers: follower, invitedEmail: $invitedPeople)
